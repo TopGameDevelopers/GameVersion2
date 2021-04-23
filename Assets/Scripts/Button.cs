@@ -8,17 +8,29 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public GameObject Door;
-    //public int timePeriodInSeconds = 1;
+    public GameObject ClosedDoor;
+
+    public GameObject OpenedDoor;
+    
+
+    public void Start()
+    {
+        OpenedDoor.SetActive(false);
+    }
+
+    private void OpenDoor(bool isOpen)
+    {
+        OpenedDoor.SetActive(isOpen);
+        ClosedDoor.SetActive(!isOpen);
+    }
     
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-            Door.SetActive(false);
+       OpenDoor(true);
     }
     
     public void OnTriggerExit2D(Collider2D other)
     {
-        Door.SetActive(true);
+        OpenDoor(false);
     }
 }
