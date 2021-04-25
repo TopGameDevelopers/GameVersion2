@@ -11,17 +11,24 @@ public class Button : MonoBehaviour
     public GameObject ClosedDoor;
 
     public GameObject OpenedDoor;
-    
 
+    public GameObject PressedButton;
+    
     public void Start()
     {
         OpenedDoor.SetActive(false);
+        PressedButton.SetActive(false);
     }
 
     private void OpenDoor(bool isOpen)
     {
+        PressedButton.SetActive(isOpen);
         OpenedDoor.SetActive(isOpen);
         ClosedDoor.SetActive(!isOpen);
+        var x = transform.position.x;
+        var y = transform.position.y;
+        var z = -transform.position.z ;
+        transform.SetPositionAndRotation(new Vector3(x,y,z), transform.rotation);
     }
     
     public void OnTriggerEnter2D(Collider2D other)
