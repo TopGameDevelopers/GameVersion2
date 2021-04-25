@@ -23,8 +23,8 @@ public class MonsterController : MonoBehaviour
         var path = BreadthFindSearching(playerPosition, monsterPosition);
         foreach (var vector in path)
         {
-            transform.position = Vector2.MoveTowards(transform.position,
-                vector, 0.5f);
+            var step = Speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, vector, step);
         }
         /*var xCoord = transform.position.x >= player.transform.position.x ? -1 : 1;
         var yCoord = transform.position.y >= player.transform.position.y ? -1 : 1;
