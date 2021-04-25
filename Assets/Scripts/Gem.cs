@@ -9,7 +9,6 @@ public class Gem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Console.WriteLine("Hello");
             Destroy(gameObject);
         }
     }
