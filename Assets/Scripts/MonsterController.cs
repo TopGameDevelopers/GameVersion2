@@ -34,7 +34,7 @@ public class MonsterController : MonoBehaviour
     private SinglyLinkedList<Vector2> BreadthFindSearching(Vector2 playerPosition, Vector2 monsterPosition)
     {
         var visited = new HashSet<Vector2>();
-        var layerWall = 1 << 10;
+        LayerMask mask = LayerMask.GetMask("Walls");
         var queue = new Queue<SinglyLinkedList<Vector2>>();
         queue.Enqueue(new SinglyLinkedList<Vector2>(monsterPosition));
         while (queue.Any())
@@ -45,10 +45,8 @@ public class MonsterController : MonoBehaviour
             if (currentPoint == playerPosition)
                 return currentPath;
             
-            var wallColliders = Physics.OverlapSphere(currentPoint, 0.5f , layerWall);
-            if(wallColliders.Any()) continue;
             visited.Add(currentPoint);
-            AddNeighbors(queue, visited, currentPoint, currentPath, layerWall);
+            AddNeighbors(queue, visited, currentPoint, currentPath, mask);
         }
 
         return null;
@@ -60,12 +58,14 @@ public class MonsterController : MonoBehaviour
         for (var dy = -1; dy <= 1; dy++)
         for (var dx = -1; dx <= 1; dx++)
         {
-            if (dx != 0 ^ dy != 0)
+            if (dx != 0 || dy != 0)
             {
                 var nextPoint = new Vector2(currentPoint.x + dx, currentPoint.y + dy);
-                var nextPointWallColliders = Physics.OverlapSphere(
-                    nextPoint, 0.5f, layerWall);
-                if (nextPointWallColliders.Length == 0)
+                /*var nextPointWallColliders = Physics.OverlapSphere(
+                    nextPoint, 0.5f, layerWall);*/
+                Collider2D[] results = new Collider2D[] { };
+                var size = Physics2D.OverlapPointNonAlloc(currentPoint, results, layerWall);
+                if (size == 0)
                 {
                     queue.Enqueue(new SinglyLinkedList<Vector2>(nextPoint,currentPath));
                     visited.Add(nextPoint);
