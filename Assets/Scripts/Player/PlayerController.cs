@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject weapon;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,5 +44,6 @@ public class PlayerController : MonoBehaviour
         var scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+        weapon.transform.localScale = scaler;
     }
 }
