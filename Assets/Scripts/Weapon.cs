@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     public Transform shotDirection;
 
-    private float timeShot;
+    private float _timeShot;
 
     public float startTime;
     // Start is called before the first frame update
@@ -27,17 +27,17 @@ public class Weapon : MonoBehaviour
         var rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + offset);
 
-        if (timeShot <= 0)
+        if (_timeShot <= 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 Instantiate(bullet, shotDirection.position, transform.rotation);
-                timeShot = startTime;
+                _timeShot = startTime;
             }
         }
         else
         {
-            timeShot -= Time.deltaTime;
+            _timeShot -= Time.deltaTime;
         }
     }
 }
