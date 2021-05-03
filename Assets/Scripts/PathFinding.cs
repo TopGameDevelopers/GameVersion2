@@ -1,141 +1,130 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.VFX;
 
-public class PathFinding : MonoBehaviour
+public class PathFinding
 {
-    private int straightMoveCost = 10;
-    private int diagonalMoveCost = 14;
+    private const int StraightMoveCost = 10;
+    private const int DiagonalMoveCost = 14;
 
-    private void Start()
+    private readonly int2 _grid;
+    private NativeArray<PathNode> _pathNodes;
+
+    private readonly int2 _startPosition;
+    private readonly int2 _endPosition;
+
+    public PathFinding(int width, int height, int2 startPosition, int2 endPosition)
     {
-        FindPath(new int2(0, 0), new int2(3, 1));
+        _grid = new int2(width, height);
+        _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Temp);
+        _startPosition = startPosition;
+        _endPosition = endPosition;
     }
-    private void FindPath(int2 startPosition, int2 endPosition)
+
+    public void FindPath()
     {
-        var gridSize = new int2(4, 4);
+        InitializePathNodes();
+        
+        var endNodeIndex = CalculateIndex(_endPosition.x, _endPosition.y, _grid.x);
 
-        NativeArray<PathNode> pathNodes = new NativeArray<PathNode>(gridSize.x * gridSize.y, Allocator.Temp);
-
-        for (var x = 0; x < gridSize.x; x++)
-        {
-            for (var y = 0; y < gridSize.y; y++)
-            {
-                var pathNode = new PathNode();
-                pathNode.x = x;
-                pathNode.y = y;
-                pathNode.index = CalculateIndex(x, y, gridSize.x);
-
-                pathNode.gCost = int.MaxValue;
-                pathNode.hCost = CalculateDistanceCost(new int2(x, y), endPosition);
-                pathNode.CalculateFCost();
-
-                pathNode.isWalkable = true;
-                pathNode.previousNodeIndex = -1;
-
-                pathNodes[pathNode.index] = pathNode;
-            }
-        }
-
-        var endNodeIndex = CalculateIndex(endPosition.x, endPosition.y, gridSize.x);
-
-        PathNode startNode = pathNodes[CalculateIndex(startPosition.x, startPosition.y, gridSize.x)];
-        startNode.gCost = 0;
-        startNode.CalculateFCost();
-        pathNodes[startNode.index] = startNode;
+        var startNode = _pathNodes[CalculateIndex(_startPosition.x, _startPosition.y, _grid.x)];
+        startNode.GCost = 0;
+        _pathNodes[startNode.Index] = startNode;
 
         var openList = new List<int>();
         var closedList = new List<int>();
         
-        openList.Add(startNode.index);
+        openList.Add(startNode.Index);
 
-        while (openList.Count >0)
+        while (openList.Count > 0)
         {
-            var currentNodeIndex = GetLowestFCostNodeIndex(openList, pathNodes);
-            var currentNode = pathNodes[currentNodeIndex];
+            var currentNode = _pathNodes[GetLowestFCostNodeIndex(openList, _pathNodes)];
 
-            if (currentNodeIndex == endNodeIndex)
-            {
+            if (currentNode.Index == endNodeIndex)
                 break;
-            }
-            
-            for(var i=0;i<openList.Count;i++)
-            {
-                if (openList[i] == currentNodeIndex)
-                {
-                    openList.RemoveAt(i);
-                    break;
-                }
-            }
-            
-            closedList.Add(currentNodeIndex);
 
-            var neighbours = GetNeighbours(currentNode, gridSize);
+            openList.Remove(currentNode.Index);
+            
+            closedList.Add(currentNode.Index);
+
+            var neighbours = GetNeighbours(currentNode, _grid);
             foreach (var neighbour in neighbours)
             {
-                var neighbourNodeIndex = CalculateIndex(neighbour.x, neighbour.y, gridSize.x);
+                var neighbourNodeIndex = CalculateIndex(neighbour.x, neighbour.y, _grid.x);
                 if (closedList.Contains(neighbourNodeIndex))
-                {
                     continue;
-                }
 
-                var neighbourNode = pathNodes[neighbourNodeIndex];
-                if (!neighbourNode.isWalkable)
-                {
+                var neighbourNode = _pathNodes[neighbourNodeIndex];
+                if (!neighbourNode.IsWalkable)
                     continue;
-                }
 
-                var currentNodePosition = new int2(currentNode.x, currentNode.y);
-                var tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNodePosition, neighbour);
-                if (tentativeGCost < neighbourNode.gCost)
+                var currentNodePosition = new int2(currentNode.X, currentNode.Y);
+                var tentativeGCost = currentNode.GCost + CalculateDistanceCost(currentNodePosition, neighbour);
+                if (tentativeGCost < neighbourNode.GCost)
                 {
-                    neighbourNode.previousNodeIndex = currentNodeIndex;
-                    neighbourNode.gCost = tentativeGCost;
-                    neighbourNode.CalculateFCost();
-                    pathNodes[neighbourNodeIndex] = neighbourNode;
+                    neighbourNode.PreviousNodeIndex = currentNode.Index;
+                    neighbourNode.GCost = tentativeGCost;
+                    _pathNodes[neighbourNodeIndex] = neighbourNode;
 
-                    if (!openList.Contains(neighbourNode.index))
-                    {
-                        openList.Add(neighbourNode.index);
-                    }
+                    if (!openList.Contains(neighbourNode.Index)) 
+                        openList.Add(neighbourNode.Index);
                 }
             }
         }
 
-        var endNode = pathNodes[endNodeIndex];
-        if (endNode.previousNodeIndex == -1)
+        var endNode = _pathNodes[endNodeIndex];
+        if (endNode.PreviousNodeIndex == -1)
         {
             Debug.Log("Didn't find a path!");
         }
         else
         {
-            var path = CalculatePath(pathNodes, endNode);
-
-            foreach (var pathPosition in path)
-            {
+            var path = CalculatePath(_pathNodes, endNode);
+            foreach (var pathPosition in path) 
                 Debug.Log(pathPosition);
-            }
         }
         
-        pathNodes.Dispose();
+        _pathNodes.Dispose();
+    }
+
+    private void AddNeighbours()
+    {
+        
+    }
+
+    private void InitializePathNodes()
+    {
+        for (var x = 0; x < _grid.x; x++)
+        for (var y = 0; y < _grid.y; y++)
+        {
+            var pathNode = new PathNode
+            {
+                X = x,
+                Y = y,
+                Index = CalculateIndex(x, y, _grid.x),
+                GCost = int.MaxValue,
+                HCost = CalculateDistanceCost(new int2(x, y), _endPosition),
+                IsWalkable = true,
+                PreviousNodeIndex = -1
+            };
+
+            _pathNodes[pathNode.Index] = pathNode;
+        }
     }
 
     private List<int2> CalculatePath(NativeArray<PathNode> pathNodes, PathNode endNode)
     {
-        var path = new List<int2> {new int2(endNode.x, endNode.y)};
+        var path = new List<int2> {new int2(endNode.X, endNode.Y)};
         var currentNode = endNode;
-        while (currentNode.previousNodeIndex != -1)
+        while (currentNode.PreviousNodeIndex != -1)
         {
-            var previousNode = pathNodes[currentNode.previousNodeIndex];
-            path.Add(new int2(previousNode.x, previousNode.y));
+            var previousNode = pathNodes[currentNode.PreviousNodeIndex];
+            path.Add(new int2(previousNode.X, previousNode.Y));
             currentNode = previousNode;
         }
+        path.Reverse();
 
         return path;
     }
@@ -144,15 +133,11 @@ public class PathFinding : MonoBehaviour
     {
         var neighbours = new List<int2>();
         for (var dx = -1; dx <= 1; dx++)
+        for (var dy = -1; dy <= 1; dy++)
         {
-            for (var dy = -1; dy <= 1; dy++)
-            {
-                var possibleNeighbour = new int2(currentNode.x + dx, currentNode.y + dy);
-                if (IsInsideGrid(possibleNeighbour, gridSize))
-                {
-                    neighbours.Add(possibleNeighbour);
-                }
-            }
+            var possibleNeighbour = new int2(currentNode.X + dx, currentNode.Y + dy);
+            if (IsInsideGrid(possibleNeighbour, gridSize)) 
+                neighbours.Add(possibleNeighbour);
         }
 
         return neighbours;
@@ -169,45 +154,31 @@ public class PathFinding : MonoBehaviour
     private int GetLowestFCostNodeIndex(List<int> openList, NativeArray<PathNode> pathNodes)
     {
         var lowestFCostPathNode = pathNodes[openList[0]];
-        foreach (var node in openList.Where(t => pathNodes[t].fCost < lowestFCostPathNode.fCost))
-        {
+        foreach (var node in openList.Where(t => pathNodes[t].FCost < lowestFCostPathNode.FCost))
             lowestFCostPathNode = pathNodes[node];
-        }
 
-        return lowestFCostPathNode.index;
+        return lowestFCostPathNode.Index;
     }
 
-    private int CalculateIndex(int x, int y, int gridWidth)
-    {
-        return x + y * gridWidth;
-    }
-
+    private int CalculateIndex(int x, int y, int gridWidth) => x + y * gridWidth;
 
     private int CalculateDistanceCost(int2 start, int2 end)
     {
         var xDistance = math.abs(start.x - end.x);
         var yDistance = math.abs(start.y - end.y);
         var remaining = math.abs(xDistance - yDistance);
-        return diagonalMoveCost * math.min(xDistance, yDistance) + straightMoveCost * remaining;
+        return DiagonalMoveCost * math.min(xDistance, yDistance) + StraightMoveCost * remaining;
     }
+    
     private struct PathNode
     {
-        public int x;
-        public int y;
-
-        public int index;
-
-        public int gCost;
-        public int hCost;
-        public int fCost;
-
-        public bool isWalkable;
-
-        public int previousNodeIndex;
-
-        public void CalculateFCost()
-        {
-            fCost = gCost + hCost;
-        }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Index { get; set; }
+        public int GCost { get; set; }
+        public int HCost { get; set; }
+        public int FCost => GCost + HCost;
+        public bool IsWalkable { get; set; }
+        public int PreviousNodeIndex { get; set; }
     }
 }

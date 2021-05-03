@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,6 +18,8 @@ public class MonsterController : MonoBehaviour
     public void Start()
     {
         rigitbody = GetComponent<Rigidbody2D>();
+        var pathFinding = new PathFinding(4, 4, new int2(3, 1), new int2(1, 1));
+        pathFinding.FindPath();
     }
 
     public void FixedUpdate()
