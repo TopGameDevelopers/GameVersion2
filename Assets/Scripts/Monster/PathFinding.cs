@@ -35,20 +35,18 @@ namespace Monster
             startNode.GCost = 0;
             _pathNodes[startNode.Index] = startNode;
 
-            var openList = new List<int>();
-            var closedList = new List<int>();
+            var openList = new HashSet<int>();
+            var closedList = new HashSet<int>();
         
             openList.Add(startNode.Index);
 
             while (openList.Count > 0)
             {
                 var currentNode = _pathNodes[GetLowestFCostNodeIndex(openList, _pathNodes)];
-
                 if (currentNode.Index == endNodeIndex)
                     break;
 
                 openList.Remove(currentNode.Index);
-            
                 closedList.Add(currentNode.Index);
 
                 AddNeighbours(openList, closedList, currentNode);
@@ -56,19 +54,16 @@ namespace Monster
 
             var endNode = _pathNodes[endNodeIndex];
             if (endNode.PreviousNodeIndex == -1)
-            {
-                //Debug.Log("Didn't find a path!");
                 return null;
-            }
 
             var path = CalculatePath(_pathNodes, endNode);
-            foreach (var pathPosition in path) 
-                Debug.Log(pathPosition);
+            // foreach (var pathPosition in path) 
+            //     Debug.Log(pathPosition);
             _pathNodes.Dispose();
             return path;
         }
 
-        private void AddNeighbours(List<int> openList, List<int> closedList, PathNode currentNode)
+        private void AddNeighbours(HashSet<int> openList, HashSet<int> closedList, PathNode currentNode)
         {
             var neighbours = GetNeighbours(currentNode, _grid);
             foreach (var neighbour in neighbours)
@@ -152,13 +147,14 @@ namespace Monster
                    gridPosition.y < gridSize.y;
         }
 
-        private int GetLowestFCostNodeIndex(List<int> openList, NativeArray<PathNode> pathNodes)
+        private int GetLowestFCostNodeIndex(HashSet<int> openList, NativeArray<PathNode> pathNodes)
         {
-            var lowestFCostPathNode = pathNodes[openList[0]];
+            return pathNodes[openList.OrderBy(t => pathNodes[t].FCost).FirstOrDefault()].Index;
+            /*var lowestFCostPathNode = pathNodes[openList[0]];
             foreach (var node in openList.Where(t => pathNodes[t].FCost < lowestFCostPathNode.FCost))
                 lowestFCostPathNode = pathNodes[node];
 
-            return lowestFCostPathNode.Index;
+            return lowestFCostPathNode.Index;*/
         }
 
         private int CalculateIndex(int x, int y, int gridWidth) => x + y * gridWidth;

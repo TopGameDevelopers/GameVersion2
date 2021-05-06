@@ -8,8 +8,8 @@ namespace Monster
     public class Searcher
     {
         private readonly GameObject _monster;
-
         private readonly GameObject _target;
+        
         private readonly int _gridSize;
 
         private readonly int2 _offsets; 
