@@ -51,29 +51,7 @@ namespace Monster
             
                 closedList.Add(currentNode.Index);
 
-                var neighbours = GetNeighbours(currentNode, _grid);
-                foreach (var neighbour in neighbours)
-                {
-                    var neighbourNodeIndex = CalculateIndex(neighbour.x, neighbour.y, _grid.x);
-                    if (closedList.Contains(neighbourNodeIndex))
-                        continue;
-
-                    var neighbourNode = _pathNodes[neighbourNodeIndex];
-                    if (!neighbourNode.IsWalkable)
-                        continue;
-
-                    var currentNodePosition = new int2(currentNode.X, currentNode.Y);
-                    var tentativeGCost = currentNode.GCost + CalculateDistanceCost(currentNodePosition, neighbour);
-                    if (tentativeGCost < neighbourNode.GCost)
-                    {
-                        neighbourNode.PreviousNodeIndex = currentNode.Index;
-                        neighbourNode.GCost = tentativeGCost;
-                        _pathNodes[neighbourNodeIndex] = neighbourNode;
-
-                        if (!openList.Contains(neighbourNode.Index)) 
-                            openList.Add(neighbourNode.Index);
-                    }
-                }
+                AddNeighbours(openList, closedList, currentNode);
             }
 
             var endNode = _pathNodes[endNodeIndex];
@@ -90,9 +68,31 @@ namespace Monster
             return path;
         }
 
-        private void AddNeighbours()
+        private void AddNeighbours(List<int> openList, List<int> closedList, PathNode currentNode)
         {
-        
+            var neighbours = GetNeighbours(currentNode, _grid);
+            foreach (var neighbour in neighbours)
+            {
+                var neighbourNodeIndex = CalculateIndex(neighbour.x, neighbour.y, _grid.x);
+                if (closedList.Contains(neighbourNodeIndex))
+                    continue;
+
+                var neighbourNode = _pathNodes[neighbourNodeIndex];
+                if (!neighbourNode.IsWalkable)
+                    continue;
+
+                var currentNodePosition = new int2(currentNode.X, currentNode.Y);
+                var tentativeGCost = currentNode.GCost + CalculateDistanceCost(currentNodePosition, neighbour);
+                if (tentativeGCost < neighbourNode.GCost)
+                {
+                    neighbourNode.PreviousNodeIndex = currentNode.Index;
+                    neighbourNode.GCost = tentativeGCost;
+                    _pathNodes[neighbourNodeIndex] = neighbourNode;
+
+                    if (!openList.Contains(neighbourNode.Index)) 
+                        openList.Add(neighbourNode.Index);
+                }
+            }
         }
 
         private void InitializePathNodes()
