@@ -23,7 +23,7 @@ public class PathFinding
         _endPosition = endPosition;
     }
 
-    public void FindPath()
+    public List<int2> FindPath()
     {
         InitializePathNodes();
         
@@ -77,13 +77,16 @@ public class PathFinding
         var endNode = _pathNodes[endNodeIndex];
         if (endNode.PreviousNodeIndex == -1)
         {
-            Debug.Log("Didn't find a path!");
+            //Debug.Log("Didn't find a path!");
+            return null;
         }
         else
         {
             var path = CalculatePath(_pathNodes, endNode);
             foreach (var pathPosition in path) 
                 Debug.Log(pathPosition);
+            return path;
+            
         }
         
         _pathNodes.Dispose();
