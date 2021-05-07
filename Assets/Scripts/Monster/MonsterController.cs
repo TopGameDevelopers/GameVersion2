@@ -22,7 +22,7 @@ namespace Monster
             if (!(path is null))
                 foreach (var point in path)
                 {
-                    var step = speed*Time.deltaTime;
+                    var step = speed * Time.deltaTime;
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(point.x,point.y), step);
                 }
         }

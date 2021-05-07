@@ -17,12 +17,16 @@ namespace Monster
         private readonly int2 _startPosition;
         private readonly int2 _endPosition;
 
-        public PathFinding(int width, int height, int2 startPosition, int2 endPosition)
+        private readonly int2 _offsets;
+
+        public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets)
         {
             _grid = new int2(width, height);
             _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Temp);
             _startPosition = startPosition;
             _endPosition = endPosition;
+
+            _offsets = offsets;
         }
 
         public List<int2> FindPath()
@@ -73,8 +77,8 @@ namespace Monster
                     continue;
 
                 var neighbourNode = _pathNodes[neighbourNodeIndex];
-                if (!neighbourNode.IsWalkable)
-                    continue;
+                /*if (!neighbourNode.IsWalkable)
+                    continue;*/
 
                 var currentNodePosition = new int2(currentNode.X, currentNode.Y);
                 var tentativeGCost = currentNode.GCost + CalculateDistanceCost(currentNodePosition, neighbour);
@@ -102,7 +106,7 @@ namespace Monster
                     Index = CalculateIndex(x, y, _grid.x),
                     GCost = int.MaxValue,
                     HCost = CalculateDistanceCost(new int2(x, y), _endPosition),
-                    IsWalkable = true,
+                    //IsWalkable = true,
                     PreviousNodeIndex = -1
                 };
 
@@ -132,11 +136,17 @@ namespace Monster
             for (var dy = -1; dy <= 1; dy++)
             {
                 var possibleNeighbour = new int2(currentNode.X + dx, currentNode.Y + dy);
-                if (IsInsideGrid(possibleNeighbour, gridSize)) 
+                if (IsInsideGrid(possibleNeighbour, gridSize) && IsEmpty(possibleNeighbour)) 
                     neighbours.Add(possibleNeighbour);
             }
 
             return neighbours;
+        }
+
+        private bool IsEmpty(int2 gridPosition)
+        {
+            return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
+                gridPosition.y - _offsets.y)) is null;
         }
 
         private bool IsInsideGrid(int2 gridPosition, int2 gridSize)
@@ -175,7 +185,7 @@ namespace Monster
             public int GCost { get; set; }
             public int HCost { get; set; }
             public int FCost => GCost + HCost;
-            public bool IsWalkable { get; set; }
+            //public bool IsWalkable { get; set; }
             public int PreviousNodeIndex { get; set; }
         }
     }
