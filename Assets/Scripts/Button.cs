@@ -36,8 +36,8 @@ public class Button : MonoBehaviour
        OpenDoor(true);
     }
     
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        OpenDoor(false);
-    }
+    // public void OnTriggerExit2D(Collider2D other)
+    // {
+    //     OpenDoor(false);
+    // }
 }

@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject weapon;
 
+    private int coinCount;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
@@ -45,5 +47,14 @@ public class PlayerController : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
         weapon.transform.localScale = scaler;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            CoinCollect.coinCount++;
+            Destroy(other.gameObject);
+        }
     }
 }
