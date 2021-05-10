@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Wall
   - Coin
+  - DamageObject
+  - Monster
   layers:
   - Default
   - TransparentFX

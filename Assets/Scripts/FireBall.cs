@@ -23,5 +23,13 @@ public class FireBall : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Monster"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

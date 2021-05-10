@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class PlayerController : MonoBehaviour
 
     private int coinCount;
 
+    public int health;
+    public int heartsNumber;
+
+    public Image[] hearts;
+    public Sprite heart;
+    public Sprite emptyHeart;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,6 +33,28 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        for (var i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].sprite = heart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if (i < heartsNumber)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+        /*if (health <= 0)
+            Destroy(this.gameObject);*/
         var moveInputX = Input.GetAxis("Horizontal");
         var moveInputY = Input.GetAxis("Vertical");
         if (moveInputX == 0 && moveInputY == 0)
@@ -51,6 +81,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("DamageObject") || other.CompareTag("Monster"))
+        {
+            health--;
+            heartsNumber--;
+        }
         if (other.CompareTag("Coin"))
         {
             CoinCollect.coinCount++;
