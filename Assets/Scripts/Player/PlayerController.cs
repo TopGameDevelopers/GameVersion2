@@ -92,4 +92,13 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.C))
+        {
+            CoinCollect.coinCount += 5;
+            Destroy(other.gameObject);
+        }
+    }
 }

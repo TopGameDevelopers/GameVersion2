@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - DamageObject
   - Monster
+  - Chest
   layers:
   - Default
   - TransparentFX
