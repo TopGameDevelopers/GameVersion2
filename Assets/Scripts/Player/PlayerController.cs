@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DamageObject") || other.CompareTag("Monster"))
+        if (other.CompareTag("DamageObject") || other.CompareTag("Monster") || other.CompareTag("Spikes"))
         {
             health--;
             heartsNumber--;

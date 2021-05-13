@@ -11,6 +11,7 @@ TagManager:
   - Monster
   - Chest
   - Lava
+  - Spikes
   layers:
   - Default
   - TransparentFX
