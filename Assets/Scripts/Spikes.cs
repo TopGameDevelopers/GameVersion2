@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
-    public GameObject dangerousSpikes;
-    public GameObject safeSpikes;
+    public GameObject[] dangerousSpikes;
+    public GameObject[] safeSpikes;
     private float _timeShot;
     public float startTime;
     private bool _dangerousNow;
@@ -21,14 +21,20 @@ public class Spikes : MonoBehaviour
         {
             if (_dangerousNow)
             {
-                dangerousSpikes.SetActive(false);
-                safeSpikes.SetActive(true);
+                for (var i = 0; i < dangerousSpikes.Length; i++)
+                {
+                    dangerousSpikes[i].SetActive(false);
+                    safeSpikes[i].SetActive(true);
+                }
                 _dangerousNow = false;
             }
             else
             {
-                dangerousSpikes.SetActive(true);
-                safeSpikes.SetActive(false);
+                for (var i = 0; i < dangerousSpikes.Length; i++)
+                {
+                    dangerousSpikes[i].SetActive(true);
+                    safeSpikes[i].SetActive(false);
+                }
                 _dangerousNow = true;
             }
             _timeShot = startTime;
