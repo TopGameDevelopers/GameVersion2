@@ -86,10 +86,25 @@ public class PlayerController : MonoBehaviour
             health--;
             heartsNumber--;
         }
+
+        if (other.CompareTag("Lava"))
+        {
+            health--;
+            heartsNumber--;
+            speed /= 2;
+        }
         if (other.CompareTag("Coin"))
         {
             CoinCollect.coinCount++;
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Lava"))
+        {
+            speed *= 2;
         }
     }
 
