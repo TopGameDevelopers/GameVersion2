@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 
     public GameObject weapon;
+    public GameObject openedChest;
 
     private int coinCount;
 
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             CoinCollect.coinCount += 5;
             Destroy(other.gameObject);
+            Instantiate(openedChest, other.transform.position, Quaternion.identity);
         }
     }
 }
