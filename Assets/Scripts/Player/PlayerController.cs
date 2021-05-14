@@ -26,10 +26,13 @@ public class PlayerController : MonoBehaviour
     public Sprite heart;
     public Sprite emptyHeart;
 
+    private AudioSource _audioSource;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void FixedUpdate()
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Coin"))
         {
+            _audioSource.Play();
             CoinCollect.coinCount++;
             Destroy(other.gameObject);
         }

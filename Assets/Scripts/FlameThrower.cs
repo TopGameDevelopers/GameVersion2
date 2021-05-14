@@ -9,10 +9,12 @@ public class FlameThrower : MonoBehaviour
     public Transform shotDirection;
     private float _timeShot;
     public float startTime;
+
+    private AudioSource _audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class FlameThrower : MonoBehaviour
         if (_timeShot <= 0)
         {
             Instantiate(fireBall, shotDirection.position, Quaternion.identity);
+            _audioSource.Play();
             _timeShot = startTime;
         }
         else
