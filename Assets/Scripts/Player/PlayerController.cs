@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             _audioSource.Play();
             CoinCollect.coinCount++;
+            FinishCoins.count++;
             Destroy(other.gameObject);
         }
     }
