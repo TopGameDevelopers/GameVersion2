@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private AudioSource audio;
+    private AudioSource _audio;
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class Coin : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            audio.Play();
+            _audio.Play();
         }
     }
 }
