@@ -19,14 +19,17 @@ namespace Monster
 
         private readonly int2 _offsets;
 
-        public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets)
+        private readonly int2[] _obstacles;
+
+        public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets, int2[] obstacles)
         {
             _grid = new int2(width, height);
-            _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Temp);
+            _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Persistent);
             _startPosition = startPosition;
             _endPosition = endPosition;
 
             _offsets = offsets;
+            _obstacles = obstacles;
         }
 
         public List<int2> FindPath()
@@ -145,8 +148,9 @@ namespace Monster
 
         private bool IsEmpty(int2 gridPosition)
         {
-            return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
-                gridPosition.y - _offsets.y)) is null;
+            return !_obstacles.Contains(new int2(gridPosition.x - _offsets.x, gridPosition.y - _offsets.y));
+            // return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
+            //     gridPosition.y - _offsets.y)) is null;
         }
 
         private bool IsInsideGrid(int2 gridPosition, int2 gridSize)

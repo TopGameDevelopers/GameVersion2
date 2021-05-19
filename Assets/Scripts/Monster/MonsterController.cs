@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,8 +13,14 @@ namespace Monster
         public Rigidbody2D rigitbody;
         public int fieldOfView;
 
-        private JobHandle handle;
-        
+        private int2[] obstacles = new int2[]
+        {
+            new int2(33, 30),
+            new int2(36, 34),
+            new int2(23, 18),
+            new int2(7, 28)
+        };
+         
         public void Start()
         {
             rigitbody = GetComponent<Rigidbody2D>();
@@ -20,8 +28,11 @@ namespace Monster
 
         public void FixedUpdate()
         {
-            var searcher = new Searcher(player, gameObject, fieldOfView * 2);
-            var path = searcher.GetPathAStar();
+            var playerPosition = player.transform.position;
+            var monsterPosition = transform.position;
+            var task = Task.Run(() => new Searcher(playerPosition, monsterPosition, fieldOfView * 2, obstacles)
+                .GetPathAStar());
+            var path = task.Result;
             if (!(path is null))
             {
                 var step = speed * Time.deltaTime;
