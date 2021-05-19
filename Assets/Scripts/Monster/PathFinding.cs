@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Monster
 {
@@ -12,7 +10,7 @@ namespace Monster
         private const int DiagonalMoveCost = 14;
 
         private readonly int2 _grid;
-        private NativeArray<PathNode> _pathNodes;
+        private PathNode[] _pathNodes;
 
         private readonly int2 _startPosition;
         private readonly int2 _endPosition;
@@ -24,7 +22,7 @@ namespace Monster
         public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets, int2[] obstacles)
         {
             _grid = new int2(width, height);
-            _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Persistent);
+            _pathNodes = new PathNode[_grid.x * _grid.y];
             _startPosition = startPosition;
             _endPosition = endPosition;
 
@@ -66,7 +64,6 @@ namespace Monster
             var path = CalculatePath(_pathNodes, endNode);
             // foreach (var pathPosition in path) 
             //     Debug.Log(pathPosition);
-            _pathNodes.Dispose();
             return path;
         }
 
@@ -117,7 +114,7 @@ namespace Monster
             }
         }
 
-        private List<int2> CalculatePath(NativeArray<PathNode> pathNodes, PathNode endNode)
+        private List<int2> CalculatePath(PathNode[] pathNodes, PathNode endNode)
         {
             var path = new List<int2> {new int2(endNode.X, endNode.Y)};
             var currentNode = endNode;
@@ -161,7 +158,7 @@ namespace Monster
                    gridPosition.y < gridSize.y;
         }
 
-        private int GetLowestFCostNodeIndex(HashSet<int> openList, NativeArray<PathNode> pathNodes)
+        private int GetLowestFCostNodeIndex(HashSet<int> openList, PathNode[] pathNodes)
         {
             return pathNodes[openList.OrderBy(t => pathNodes[t].FCost).FirstOrDefault()].Index;
             /*var lowestFCostPathNode = pathNodes[openList[0]];
