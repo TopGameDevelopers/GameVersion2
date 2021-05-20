@@ -12,6 +12,7 @@ TagManager:
   - Chest
   - Lava
   - Spikes
+  - Gem
   layers:
   - Default
   - TransparentFX

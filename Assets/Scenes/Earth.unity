@@ -23100,8 +23100,8 @@ Tilemap:
   - first: {x: 3, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 2
+      m_TileIndex: 7
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -70285,7 +70285,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: fd9cbf8fadd1276418067a8db2d60196, type: 2}
   - m_RefCount: 5618
     m_Data: {fileID: 11400000, guid: 43804477185ba174babbda3c0e5c2627, type: 2}
-  - m_RefCount: 123
+  - m_RefCount: 122
     m_Data: {fileID: 11400000, guid: 9dd3b45103ecd2048a5801b3c8c1803c, type: 2}
   - m_RefCount: 117
     m_Data: {fileID: 11400000, guid: 648faa64c6e586e4b993e22ae0952de9, type: 2}
@@ -70293,7 +70293,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: cdeb71ba58ea0694d86e0afd6506f04a, type: 2}
   - m_RefCount: 77
     m_Data: {fileID: 11400000, guid: 34cbaed725a80964e8f2d5a25d4b46bd, type: 2}
-  - m_RefCount: 9
+  - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 4d6055d3713e44247a4e29a7dd9300df, type: 2}
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 608ad555041bba14cba892046fce61bd, type: 2}
@@ -70314,7 +70314,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 70549ac2efcb6fa4eaee6e3d3e7e16f7, type: 3}
   - m_RefCount: 910
     m_Data: {fileID: 21300000, guid: 48a8dcbed9c9dfb48857e75c64bf2d54, type: 3}
-  - m_RefCount: 123
+  - m_RefCount: 122
     m_Data: {fileID: 21300000, guid: d4e5234f6a47c8b4395e0e6bfa00727a, type: 3}
   - m_RefCount: 117
     m_Data: {fileID: 21300000, guid: 1282823c63fd35645831f1f90b9a0405, type: 3}
@@ -70322,7 +70322,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 125627ddace75ca4d94a1a199c01e5f1, type: 3}
   - m_RefCount: 77
     m_Data: {fileID: 21300000, guid: 0b2382078b13154459eea5787cf5d4bb, type: 3}
-  - m_RefCount: 9
+  - m_RefCount: 10
     m_Data: {fileID: 21300000, guid: 4593afda8c2fcc1458bc3175b1e0d427, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: 21300000, guid: 5e3c304207567bf4db6e554d50ee483f, type: 3}

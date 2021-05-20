@@ -28,13 +28,32 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    public GameObject Gem;
+
+    public GameObject Menu;
+    public GameObject CCollect;
+    public GameObject Health;
+    public Text finishText;
+
     public void Start()
     {
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
+        Menu.SetActive(false);
     }
 
+    private void GetFinishMenu()
+    {
+        //transform.SetPositionAndRotation(new Vector3(0, 0, -100f), transform.rotation);
+        Menu.SetActive(true);
+        Time.timeScale = 0f;
+        CCollect.gameObject.SetActive(false);
+        Health.gameObject.SetActive(false);
+        finishText.text = $"✘{CoinCollect.coinCount}";
+        Destroy(weapon);
+    }
+    
     public void FixedUpdate()
     {
         for (var i = 0; i < hearts.Length; i++)
@@ -101,7 +120,12 @@ public class PlayerController : MonoBehaviour
         {
             _audioSource.Play();
             CoinCollect.coinCount++;
-            FinishCoins.count++;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Gem"))
+        {
+            GetFinishMenu();
             Destroy(other.gameObject);
         }
     }
