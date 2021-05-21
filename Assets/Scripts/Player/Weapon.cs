@@ -15,11 +15,13 @@ public class Weapon : MonoBehaviour
 
     public float startTime;
 
-    private bool facingLeft;     
+    private bool facingLeft;
+
+    private AudioSource _audio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                _audio.Play();
                 Instantiate(bullet, shotDirection.position, transform.rotation);
                 _timeShot = startTime;
             }

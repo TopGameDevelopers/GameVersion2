@@ -1,4 +1,6 @@
-using Unity.Jobs;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,17 +13,23 @@ namespace Monster
         public Rigidbody2D rigitbody;
         public int fieldOfView;
 
-        private JobHandle handle;
+        public GameObject[] obstacleObjects;
+        private int2[] _obstacles;
         
+         
         public void Start()
         {
             rigitbody = GetComponent<Rigidbody2D>();
+            GetObstaclesCoordinates();
         }
 
         public void FixedUpdate()
         {
-            var searcher = new Searcher(player, gameObject, fieldOfView * 2);
-            var path = searcher.GetPathAStar();
+            var playerPosition = player.transform.position;
+            var monsterPosition = transform.position;
+            var task = Task.Run(() => new Searcher(playerPosition, monsterPosition, fieldOfView * 2, _obstacles)
+                .GetPathAStar());
+            var path = task.Result;
             if (!(path is null))
             {
                 var step = speed * Time.deltaTime;
@@ -38,6 +46,16 @@ namespace Monster
             if (other.CompareTag("Bullet"))
             {
                 Destroy(gameObject);
+            }
+        }
+
+        private void GetObstaclesCoordinates()
+        {
+            _obstacles = new int2[obstacleObjects.Length];
+            for (var i = 0; i < obstacleObjects.Length; i++)
+            {
+                var obstacleCoordinates = obstacleObjects[i].transform.position;
+                _obstacles[i] = new int2((int) obstacleCoordinates.x, (int) obstacleCoordinates.y);
             }
         }
     }

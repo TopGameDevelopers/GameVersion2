@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public Sprite emptyHeart;
 
     private AudioSource _audioSource;
+    public GameObject chestsCoins;
 
     public GameObject Gem;
 
@@ -145,6 +146,7 @@ public class PlayerController : MonoBehaviour
             CoinCollect.coinCount += 5;
             Destroy(other.gameObject);
             Instantiate(openedChest, other.transform.position, Quaternion.identity);
+            Instantiate(chestsCoins, transform.position, Quaternion.identity);
         }
     }
 }

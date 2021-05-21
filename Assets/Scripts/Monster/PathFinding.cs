@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Monster
 {
@@ -12,21 +10,24 @@ namespace Monster
         private const int DiagonalMoveCost = 14;
 
         private readonly int2 _grid;
-        private NativeArray<PathNode> _pathNodes;
+        private PathNode[] _pathNodes;
 
         private readonly int2 _startPosition;
         private readonly int2 _endPosition;
 
         private readonly int2 _offsets;
 
-        public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets)
+        private readonly int2[] _obstacles;
+
+        public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets, int2[] obstacles)
         {
             _grid = new int2(width, height);
-            _pathNodes = new NativeArray<PathNode>(_grid.x * _grid.y, Allocator.Temp);
+            _pathNodes = new PathNode[_grid.x * _grid.y];
             _startPosition = startPosition;
             _endPosition = endPosition;
 
             _offsets = offsets;
+            _obstacles = obstacles;
         }
 
         public List<int2> FindPath()
@@ -63,7 +64,6 @@ namespace Monster
             var path = CalculatePath(_pathNodes, endNode);
             // foreach (var pathPosition in path) 
             //     Debug.Log(pathPosition);
-            _pathNodes.Dispose();
             return path;
         }
 
@@ -114,7 +114,7 @@ namespace Monster
             }
         }
 
-        private List<int2> CalculatePath(NativeArray<PathNode> pathNodes, PathNode endNode)
+        private List<int2> CalculatePath(PathNode[] pathNodes, PathNode endNode)
         {
             var path = new List<int2> {new int2(endNode.X, endNode.Y)};
             var currentNode = endNode;
@@ -145,8 +145,9 @@ namespace Monster
 
         private bool IsEmpty(int2 gridPosition)
         {
-            return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
-                gridPosition.y - _offsets.y)) is null;
+            return !_obstacles.Contains(new int2(gridPosition.x - _offsets.x, gridPosition.y - _offsets.y));
+            // return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
+            //     gridPosition.y - _offsets.y)) is null;
         }
 
         private bool IsInsideGrid(int2 gridPosition, int2 gridSize)
@@ -157,7 +158,7 @@ namespace Monster
                    gridPosition.y < gridSize.y;
         }
 
-        private int GetLowestFCostNodeIndex(HashSet<int> openList, NativeArray<PathNode> pathNodes)
+        private int GetLowestFCostNodeIndex(HashSet<int> openList, PathNode[] pathNodes)
         {
             return pathNodes[openList.OrderBy(t => pathNodes[t].FCost).FirstOrDefault()].Index;
             /*var lowestFCostPathNode = pathNodes[openList[0]];
