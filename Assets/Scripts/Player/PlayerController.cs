@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera FirstCam;
+    public Camera FinCam;
+
     public float speed;
 
     private bool facingLeft;
@@ -41,11 +44,15 @@ public class PlayerController : MonoBehaviour
         rigitbody = GetComponent<Rigidbody2D>();
         _audioSource = GetComponent<AudioSource>();
         Menu.SetActive(false);
+        FirstCam.gameObject.SetActive(true);
+        FinCam.gameObject.SetActive(false);
     }
 
     private void GetFinishMenu()
     {
         //transform.SetPositionAndRotation(new Vector3(0, 0, -100f), transform.rotation);
+        FirstCam.gameObject.SetActive(false);
+        FinCam.gameObject.SetActive(true);
         Menu.SetActive(true);
         Time.timeScale = 0f;
         CCollect.gameObject.SetActive(false);
