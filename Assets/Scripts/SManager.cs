@@ -8,5 +8,6 @@ public class SManager : MonoBehaviour
     public void GoToNextLevel()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
     }
 }
