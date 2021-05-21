@@ -56,7 +56,7 @@ namespace Monster
             {
                 var obstacleCoordinates = obstacleObjects[i].transform.position;
                 _obstacles[i] = new int2((int) obstacleCoordinates.x, (int) obstacleCoordinates.y);
-            }
+            }   
         }
     }
 }
