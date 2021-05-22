@@ -9,9 +9,10 @@ public class Spikes : MonoBehaviour
     private float _timeShot;
     public float startTime;
     private bool _dangerousNow;
+    private AudioSource _audio;
     void Start()
     {
-        
+        _audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class Spikes : MonoBehaviour
                     safeSpikes[i].SetActive(false);
                 }
                 _dangerousNow = true;
+                _audio.Play();
             }
             _timeShot = startTime;
         }
