@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public Sprite heart;
     public Sprite emptyHeart;
 
-    private AudioSource _audioSource;
+    private AudioSource _coinAudioSource;
     public GameObject chestsCoins;
 
     public GameObject Gem;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
-        _audioSource = GetComponent<AudioSource>();
+        _coinAudioSource = GetComponent<AudioSource>();
         Menu.SetActive(false);
         FirstCam.gameObject.SetActive(true);
         FinCam.gameObject.SetActive(false);
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Coin"))
         {
-            _audioSource.Play();
+            _coinAudioSource.Play();
             CoinCollect.coinCount++;
             Destroy(other.gameObject);
         }
@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour
             CoinCollect.coinCount += 5;
             Destroy(other.gameObject);
             Instantiate(openedChest, other.transform.position, Quaternion.identity);
+            _coinAudioSource.Play();
             Instantiate(chestsCoins, transform.position, Quaternion.identity);
         }
     }

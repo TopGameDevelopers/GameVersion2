@@ -11,6 +11,7 @@ namespace Monster
         public GameObject player;
         [FormerlySerializedAs("Speed")] public float speed;
         public Rigidbody2D rigitbody;
+        private AudioSource _audio;
         public int fieldOfView;
 
         public GameObject[] obstacleObjects;
@@ -20,6 +21,7 @@ namespace Monster
         public void Start()
         {
             rigitbody = GetComponent<Rigidbody2D>();
+            _audio = GetComponent<AudioSource>();
             GetObstaclesCoordinates();
         }
 
@@ -38,6 +40,7 @@ namespace Monster
                         new Vector2(point.x, point.y), step);
                 transform.position = Vector2.MoveTowards(transform.position, 
                     player.transform.position, step);
+                _audio.Play();
             }
         }
 

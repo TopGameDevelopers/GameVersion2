@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
-    /*public void OnTriggerEnter2D(Collider2D other)
+    private AudioSource _audio;
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
+            _audio.Play();
         }
-    }*/
+    }
 }
