@@ -13,11 +13,14 @@ public class Button : MonoBehaviour
     public GameObject OpenedDoor;
 
     public GameObject PressedButton;
+
+    private AudioSource _audio;
     
     public void Start()
     {
         OpenedDoor.SetActive(false);
         PressedButton.SetActive(false);
+        _audio = GetComponent<AudioSource>();
     }
 
     private void OpenDoor(bool isOpen)
@@ -34,6 +37,7 @@ public class Button : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
        OpenDoor(true);
+       _audio.Play();
     }
     
     // public void OnTriggerExit2D(Collider2D other)
