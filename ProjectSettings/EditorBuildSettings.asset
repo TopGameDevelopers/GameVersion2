@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Main Menu.unity
+    guid: 17614bedc2d0b7c4c8c13d789977a3a7
+  - enabled: 1
+    path: Assets/Scenes/The game beginning.unity
+    guid: 53fd53fb713cdab4a97453f0fbe98041
+  - enabled: 1
+    path: Assets/Scenes/Mars.unity
+    guid: 28479c97b62ee784ba3c70d20f3d7663
   m_configObjects: {}
