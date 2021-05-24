@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
 
     private bool facingLeft;
 
+    public Camera playCamera;
+
     private AudioSource _audio;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        var difference = playCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         var rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + offset);
 
