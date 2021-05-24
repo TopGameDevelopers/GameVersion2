@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Camera FirstCam;
     public Camera FinCam;
+    public Camera RestartCam;
 
     public float speed;
 
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         Menu.SetActive(false);
         FirstCam.gameObject.SetActive(true);
         FinCam.gameObject.SetActive(false);
+        RestartCam.gameObject.SetActive(false);
     }
 
     private void GetFinishMenu()
@@ -64,6 +66,13 @@ public class PlayerController : MonoBehaviour
     
     public void FixedUpdate()
     {
+        if (health <= 0)
+        {
+            FirstCam.gameObject.SetActive(false);
+            RestartCam.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        
         for (var i = 0; i < hearts.Length; i++)
         {
             if (i < health)
