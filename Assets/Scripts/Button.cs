@@ -23,14 +23,9 @@ public class Button : MonoBehaviour
     private void OpenDoor()
     {
         Instantiate(PressedButton, transform.position, transform.rotation);
-        Debug.Log(transform.position);
         OpenedDoor.SetActive(true);
         ClosedDoor.SetActive(false);
         Destroy(gameObject);
-        /*var x = transform.position.x;
-        var y = transform.position.y;
-        var z = -transform.position.z ;
-        transform.SetPositionAndRotation(new Vector3(x,y,z), transform.rotation);*/
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -38,9 +33,4 @@ public class Button : MonoBehaviour
         _audio.Play();
        OpenDoor();
     }
-    
-    // public void OnTriggerExit2D(Collider2D other)
-    // {
-    //     OpenDoor(false);
-    // }
 }
