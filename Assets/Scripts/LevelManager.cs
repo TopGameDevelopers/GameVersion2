@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
 
     public UnityEngine.UI.Button level4;
     // Start is called before the first frame update
-    private int levelComplete;
+    public int levelComplete;
     void Start()
     {
         levelComplete = PlayerPrefs.GetInt("LevelComplete");
