@@ -14,8 +14,7 @@ public class Spikes : MonoBehaviour
     {
         _audio = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (_timeShot <= 0)
