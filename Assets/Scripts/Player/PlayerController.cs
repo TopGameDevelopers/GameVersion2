@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource _coinAudioSource;
     public AudioSource gemAudioSource;
     public AudioSource buttonAudioSource;
+    public AudioSource healingAudioSource;
     public GameObject chestsCoins;
     public GameObject healing;
 
@@ -134,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("HealChest"))
         {
+            healingAudioSource.Play();
             health++;
             heartsNumber++;
             Instantiate(healing, transform.position, Quaternion.identity);
