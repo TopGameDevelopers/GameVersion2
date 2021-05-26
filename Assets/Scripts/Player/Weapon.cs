@@ -5,29 +5,28 @@ using UnityEngine.Serialization;
 
 public class Weapon : MonoBehaviour
 {
-    [FormerlySerializedAs("Offset")] public float offset;
-
-    public GameObject bullet;
-
-    public Transform shotDirection;
-
-    private float _timeShot;
-
     public float startTime;
-
-    private bool facingLeft;
-
+    [FormerlySerializedAs("Offset")] public float offset;
+    public GameObject bullet;
+    public Transform shotDirection;
     public Camera playCamera;
 
+    private float _timeShot;
+    private bool facingLeft;
     private AudioSource _audio;
-    // Start is called before the first frame update
+
     void Start()
     {
         _audio = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
+    
     void Update()
+    {
+        RotateWeapon();
+        Shot();
+    }
+
+    private void RotateWeapon()
     {
         var difference = playCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         var rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -38,7 +37,10 @@ public class Weapon : MonoBehaviour
             rotateZ + offset >= 0 && rotateZ + offset < 90 && facingLeft ||
             rotateZ + offset >= -90 && rotateZ + offset < 0 && facingLeft)
             Flip();
+    }
 
+    private void Shot()
+    {
         if (_timeShot <= 0)
         {
             if (Input.GetMouseButtonDown(0))
@@ -49,9 +51,7 @@ public class Weapon : MonoBehaviour
             }
         }
         else
-        {
             _timeShot -= Time.deltaTime;
-        }
     }
     
     private void Flip()

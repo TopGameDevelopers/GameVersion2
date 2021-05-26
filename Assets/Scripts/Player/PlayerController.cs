@@ -88,14 +88,6 @@ public class PlayerController : MonoBehaviour
         var moveInputX = Input.GetAxis("Horizontal");
         var moveInputY = Input.GetAxis("Vertical");
         anim.SetBool("IsRunning", moveInputX != 0 || moveInputY != 0);
-        /*if (moveInputX == 0 && moveInputY == 0)
-        {
-            anim.SetBool("IsRunning", false);
-        }
-        else
-        {
-            anim.SetBool("IsRunning", true);
-        }*/
         rigitbody.velocity = new Vector2(moveInputX, moveInputY) * speed;
         if (moveInputX > 0 && !facingLeft || moveInputX < 0 && facingLeft)
             Flip();
