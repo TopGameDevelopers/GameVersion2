@@ -47,6 +47,11 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("show settings");
     }
 
+    public void Restart()
+    {
+        Debug.Log("restart");
+    }
+
     public void QuitGame()
     {
         Debug.Log("quit");
