@@ -6,15 +6,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed;
-
     public float destroyTime;
-    // Start is called before the first frame update
+
     void Start()
     {
-        Invoke("DestroyBullet", destroyTime);
+        Invoke(nameof(DestroyBullet), destroyTime);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         transform.Translate(Vector2.right * (speed * Time.deltaTime));
