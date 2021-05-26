@@ -11,12 +11,10 @@ public class PlayerController : MonoBehaviour
     public Camera RestartCam;
 
     public float speed;
+    public Rigidbody2D rigitbody;
+    public Animator anim;
 
     private bool facingLeft;
-
-    public Rigidbody2D rigitbody;
-
-    public Animator anim;
 
     public GameObject weapon;
     public GameObject openedChest;
@@ -31,9 +29,9 @@ public class PlayerController : MonoBehaviour
     public Sprite emptyHeart;
 
     private AudioSource _coinAudioSource;
+    public AudioSource gemAudioSource;
     public GameObject chestsCoins;
-
-    public GameObject Gem;
+    public GameObject healing;
 
     public GameObject Menu;
     public GameObject CCollect;
@@ -66,45 +64,38 @@ public class PlayerController : MonoBehaviour
     
     public void FixedUpdate()
     {
+        UpdateHealthSystem();
+        MovePlayer();
+    }
+
+    private void UpdateHealthSystem()
+    {
         if (health <= 0)
         {
             FirstCam.gameObject.SetActive(false);
             RestartCam.gameObject.SetActive(true);
             Time.timeScale = 0f;
         }
-        
         for (var i = 0; i < hearts.Length; i++)
         {
-            if (i < health)
-            {
-                hearts[i].sprite = heart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-
-            if (i < heartsNumber)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            hearts[i].sprite = i < health ? heart : emptyHeart;
+            hearts[i].enabled = i < heartsNumber;
         }
-        /*if (health <= 0)
-            Destroy(this.gameObject);*/
+    }
+
+    private void MovePlayer()
+    {
         var moveInputX = Input.GetAxis("Horizontal");
         var moveInputY = Input.GetAxis("Vertical");
-        if (moveInputX == 0 && moveInputY == 0)
+        anim.SetBool("IsRunning", moveInputX != 0 || moveInputY != 0);
+        /*if (moveInputX == 0 && moveInputY == 0)
         {
             anim.SetBool("IsRunning", false);
         }
         else
         {
             anim.SetBool("IsRunning", true);
-        }
+        }*/
         rigitbody.velocity = new Vector2(moveInputX, moveInputY) * speed;
         if (moveInputX > 0 && !facingLeft || moveInputX < 0 && facingLeft)
             Flip();
@@ -133,6 +124,7 @@ public class PlayerController : MonoBehaviour
             heartsNumber--;
             speed /= 2;
         }
+        
         if (other.CompareTag("Coin"))
         {
             _coinAudioSource.Play();
@@ -142,7 +134,16 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Gem"))
         {
+            gemAudioSource.Play();
             GetFinishMenu();
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("HealChest"))
+        {
+            health++;
+            heartsNumber++;
+            Instantiate(healing, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }
     }
