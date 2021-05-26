@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource _coinAudioSource;
     public AudioSource gemAudioSource;
+    public AudioSource buttonAudioSource;
     public GameObject chestsCoins;
     public GameObject healing;
 
@@ -137,6 +138,11 @@ public class PlayerController : MonoBehaviour
             heartsNumber++;
             Instantiate(healing, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Button"))
+        {
+            buttonAudioSource.Play();
         }
     }
 

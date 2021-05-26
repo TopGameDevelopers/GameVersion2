@@ -14,6 +14,7 @@ TagManager:
   - Spikes
   - Gem
   - HealChest
+  - Button
   layers:
   - Default
   - TransparentFX
