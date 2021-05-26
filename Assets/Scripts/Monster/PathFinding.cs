@@ -11,12 +11,9 @@ namespace Monster
 
         private readonly int2 _grid;
         private PathNode[] _pathNodes;
-
         private readonly int2 _startPosition;
         private readonly int2 _endPosition;
-
         private readonly int2 _offsets;
-
         private readonly int2[] _obstacles;
 
         public PathFinding(int width, int height, int2 startPosition, int2 endPosition, int2 offsets, int2[] obstacles)
@@ -33,37 +30,28 @@ namespace Monster
         public List<int2> FindPath()
         {
             InitializePathNodes();
-        
             var endNodeIndex = CalculateIndex(_endPosition.x, _endPosition.y, _grid.x);
-
             var startNode = _pathNodes[CalculateIndex(_startPosition.x, _startPosition.y, _grid.x)];
             startNode.GCost = 0;
             _pathNodes[startNode.Index] = startNode;
-
             var openList = new HashSet<int>();
             var closedList = new HashSet<int>();
-        
             openList.Add(startNode.Index);
-
+            
             while (openList.Count > 0)
             {
                 var currentNode = _pathNodes[GetLowestFCostNodeIndex(openList, _pathNodes)];
                 if (currentNode.Index == endNodeIndex)
                     break;
-
                 openList.Remove(currentNode.Index);
                 closedList.Add(currentNode.Index);
-
                 AddNeighbours(openList, closedList, currentNode);
             }
 
             var endNode = _pathNodes[endNodeIndex];
             if (endNode.PreviousNodeIndex == -1)
                 return null;
-
             var path = CalculatePath(_pathNodes, endNode);
-            // foreach (var pathPosition in path) 
-            //     Debug.Log(pathPosition);
             return path;
         }
 
@@ -75,11 +63,7 @@ namespace Monster
                 var neighbourNodeIndex = CalculateIndex(neighbour.x, neighbour.y, _grid.x);
                 if (closedList.Contains(neighbourNodeIndex))
                     continue;
-
                 var neighbourNode = _pathNodes[neighbourNodeIndex];
-                /*if (!neighbourNode.IsWalkable)
-                    continue;*/
-
                 var currentNodePosition = new int2(currentNode.X, currentNode.Y);
                 var tentativeGCost = currentNode.GCost + CalculateDistanceCost(currentNodePosition, neighbour);
                 if (tentativeGCost < neighbourNode.GCost)
@@ -87,7 +71,6 @@ namespace Monster
                     neighbourNode.PreviousNodeIndex = currentNode.Index;
                     neighbourNode.GCost = tentativeGCost;
                     _pathNodes[neighbourNodeIndex] = neighbourNode;
-
                     if (!openList.Contains(neighbourNode.Index)) 
                         openList.Add(neighbourNode.Index);
                 }
@@ -106,7 +89,6 @@ namespace Monster
                     Index = CalculateIndex(x, y, _grid.x),
                     GCost = int.MaxValue,
                     HCost = CalculateDistanceCost(new int2(x, y), _endPosition),
-                    //IsWalkable = true,
                     PreviousNodeIndex = -1
                 };
 
@@ -143,12 +125,8 @@ namespace Monster
             return neighbours;
         }
 
-        private bool IsEmpty(int2 gridPosition)
-        {
-            return !_obstacles.Contains(new int2(gridPosition.x - _offsets.x, gridPosition.y - _offsets.y));
-            // return Physics2D.OverlapPoint(new Vector2(gridPosition.x - _offsets.x,
-            //     gridPosition.y - _offsets.y)) is null;
-        }
+        private bool IsEmpty(int2 gridPosition) => 
+            !_obstacles.Contains(new int2(gridPosition.x - _offsets.x, gridPosition.y - _offsets.y));
 
         private bool IsInsideGrid(int2 gridPosition, int2 gridSize)
         {
@@ -161,11 +139,6 @@ namespace Monster
         private int GetLowestFCostNodeIndex(HashSet<int> openList, PathNode[] pathNodes)
         {
             return pathNodes[openList.OrderBy(t => pathNodes[t].FCost).FirstOrDefault()].Index;
-            /*var lowestFCostPathNode = pathNodes[openList[0]];
-            foreach (var node in openList.Where(t => pathNodes[t].FCost < lowestFCostPathNode.FCost))
-                lowestFCostPathNode = pathNodes[node];
-
-            return lowestFCostPathNode.Index;*/
         }
 
         private int CalculateIndex(int x, int y, int gridWidth) => x + y * gridWidth;
@@ -186,7 +159,6 @@ namespace Monster
             public int GCost { get; set; }
             public int HCost { get; set; }
             public int FCost => GCost + HCost;
-            //public bool IsWalkable { get; set; }
             public int PreviousNodeIndex { get; set; }
         }
     }
