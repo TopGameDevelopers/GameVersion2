@@ -44,14 +44,21 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        Time.timeScale = 1f;
         if (BeginCam != null)
-            BeginCam.gameObject.SetActive(false);
+        {
+            BeginCam.gameObject.SetActive(true);
+            FirstCam.gameObject.SetActive(false);
+        }
+        else
+        {
+            FirstCam.gameObject.SetActive(true);
+        }
+        Time.timeScale = 1f;
+        BeginCam.gameObject.SetActive(true);
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
         Menu.SetActive(false);
-        FirstCam.gameObject.SetActive(true);
         FinCam.gameObject.SetActive(false);
         RestartCam.gameObject.SetActive(false);
         RestartMenu.SetActive(false);
