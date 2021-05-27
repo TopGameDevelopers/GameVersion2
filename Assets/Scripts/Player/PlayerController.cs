@@ -74,12 +74,12 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthSystem()
     {
-        if (health <= 0)
-        {
-            FirstCam.gameObject.SetActive(false);
-            RestartCam.gameObject.SetActive(true);
-            Time.timeScale = 0f;
-        }
+        // if (health <= 0)
+        // {
+        //     FirstCam.gameObject.SetActive(false);
+        //     RestartCam.gameObject.SetActive(true);
+        //     Time.timeScale = 0f;
+        // }
         for (var i = 0; i < hearts.Length; i++)
         {
             hearts[i].sprite = i < health ? heart : emptyHeart;
