@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     private static bool _gameIsPaused;
     public GameObject pauseMenuUI;
-
-    private void Start()
-    {
-        pauseMenuUI.gameObject.SetActive(false);
-    }
+    public GameObject pauseSettings;
+    public GameObject backButton;
 
     void Update()
     {
@@ -42,25 +39,28 @@ public class PauseMenu : MonoBehaviour
         _gameIsPaused = true;
     }
 
-    /*public void LoadMenu()
-    {
-        Debug.Log("load menu");
-        Time.timeScale = 1f;
-    }*/
-
     public void ShowSettings()
     {
-        Debug.Log("show settings");
+        pauseSettings.SetActive(true);
+        backButton.SetActive(true);
     }
 
     public void Restart()
     {
         Debug.Log("restart");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
     {
-        Debug.Log("quit");
-        //Application.Quit();
+        //Debug.Log("quit");
+        Application.Quit();
+    }
+
+    public void BackToPause()
+    {
+        pauseSettings.SetActive(false);
+        backButton.SetActive(false);
     }
 }
