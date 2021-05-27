@@ -37,13 +37,16 @@ public class PlayerController : MonoBehaviour
     public GameObject healing;
 
     public GameObject Menu;
+    public GameObject RestartMenu;
     public GameObject CCollect;
     public GameObject Health;
     public Text finishText;
 
     public void Start()
     {
-        BeginCam.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        if (BeginCam != null)
+            BeginCam.gameObject.SetActive(false);
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
         FirstCam.gameObject.SetActive(true);
         FinCam.gameObject.SetActive(false);
         RestartCam.gameObject.SetActive(false);
+        RestartMenu.SetActive(false);
     }
 
     private void GetFinishMenu()
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             FirstCam.gameObject.SetActive(false);
             RestartCam.gameObject.SetActive(true);
+            RestartMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
         }
         for (var i = 0; i < hearts.Length; i++)

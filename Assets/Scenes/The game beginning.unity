@@ -631,7 +631,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1167353162}
   - component: {fileID: 1167353161}
-  - component: {fileID: 1167353163}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -651,10 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fd8de9889943c4ea17d4d9e243385d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level2: {fileID: 1199615088}
-  level3: {fileID: 1768316946}
-  level4: {fileID: 1298207163}
-  LevelComplete: 0
+  levelComplete: 0
 --- !u!4 &1167353162
 Transform:
   m_ObjectHideFlags: 0
@@ -669,19 +665,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1167353163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167353160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11d86b2b99e9ef41b7b7b883173b401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LevelComplete: 0
 --- !u!1 &1199615084
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +762,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -826,7 +809,7 @@ Animator:
   m_GameObject: {fileID: 1199615084}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 70dfd3c59e2703b4d95f64d01e8958a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 86092dc24aa7d8043b584e8eae348a7b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1005,6 +988,7 @@ GameObject:
   - component: {fileID: 1298207165}
   - component: {fileID: 1298207164}
   - component: {fileID: 1298207163}
+  - component: {fileID: 1298207167}
   m_Layer: 5
   m_Name: Moon
   m_TagString: Untagged
@@ -1031,7 +1015,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1126,6 +1110,25 @@ RectTransform:
   m_AnchoredPosition: {x: 1224, y: -477}
   m_SizeDelta: {x: 700, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1298207167
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298207162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52f93e3da3813324ea2aeffe3ef34470, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1301604778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1445,7 @@ GameObject:
   - component: {fileID: 1768316948}
   - component: {fileID: 1768316947}
   - component: {fileID: 1768316946}
+  - component: {fileID: 1768316949}
   m_Layer: 5
   m_Name: Earth
   m_TagString: Untagged
@@ -1488,7 +1492,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1563,6 +1567,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768316944}
   m_CullTransparentMesh: 1
+--- !u!95 &1768316949
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768316944}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1048d47a77093b47b46fdcb673fd152, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1770626528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,10 +1768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fd8de9889943c4ea17d4d9e243385d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level2: {fileID: 1199615088}
-  level3: {fileID: 1768316946}
-  level4: {fileID: 1298207163}
-  LevelComplete: 0
+  levelComplete: 0
 --- !u!114 &1814695730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,7 +1840,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
