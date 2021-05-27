@@ -54,6 +54,7 @@ namespace Monster
 
         private void GetObstaclesCoordinates()
         {
+            if (obstacleObjects is null) return;
             _obstacles = new int2[obstacleObjects.Length];
             for (var i = 0; i < obstacleObjects.Length; i++)
             {
