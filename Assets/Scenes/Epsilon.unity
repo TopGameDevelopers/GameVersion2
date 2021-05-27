@@ -83907,6 +83907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 251803021}
+  pauseSettings: {fileID: 702255797}
+  backButton: {fileID: 1783103320}
 --- !u!114 &1127611882
 MonoBehaviour:
   m_ObjectHideFlags: 0
