@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Camera FirstCam;
     public Camera FinCam;
     public Camera RestartCam;
+    public Camera BeginCam;
 
     public float speed;
     public Rigidbody2D rigitbody;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        BeginCam.gameObject.SetActive(false);
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
