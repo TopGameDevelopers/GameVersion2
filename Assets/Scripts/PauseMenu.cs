@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
     private static bool _gameIsPaused;
     public GameObject pauseMenuUI;
-    
+
+    private void Start()
+    {
+        pauseMenuUI.gameObject.SetActive(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
