@@ -87,8 +87,8 @@ public class PlayerController : MonoBehaviour
     {
         if (health <= 0)
         {
-            FirstCam.gameObject.SetActive(false);
-            RestartCam.gameObject.SetActive(true);
+            //FirstCam.gameObject.SetActive(false);
+            //RestartCam.gameObject.SetActive(true);
             RestartMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
         }
