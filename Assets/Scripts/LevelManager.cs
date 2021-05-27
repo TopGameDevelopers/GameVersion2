@@ -15,15 +15,15 @@ public class LevelManager : MonoBehaviour
 
     public UnityEngine.UI.Button level4;
     // Start is called before the first frame update
-    public int levelComplete;
+    public int LevelComplete;
     void Start()
     {
-        levelComplete = PlayerPrefs.GetInt("LevelComplete");
+        LevelComplete = PlayerPrefs.GetInt("LevelComplete");
         level2.interactable = false;
         level3.interactable = false;
         level4.interactable = false;
 
-        switch (levelComplete)
+        switch (LevelComplete)
         {
             case 1:
                 level2.interactable = true;
