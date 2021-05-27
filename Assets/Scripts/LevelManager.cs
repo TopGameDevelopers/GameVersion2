@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -15,15 +16,15 @@ public class LevelManager : MonoBehaviour
 
     public UnityEngine.UI.Button level4;
     // Start is called before the first frame update
-    public int LevelComplete;
+    [FormerlySerializedAs("LevelComplete")] public int levelComplete;
     void Start()
     {
-        LevelComplete = PlayerPrefs.GetInt("LevelComplete");
+        levelComplete = PlayerPrefs.GetInt("LevelComplete");
         level2.interactable = false;
         level3.interactable = false;
         level4.interactable = false;
 
-        switch (LevelComplete)
+        switch (levelComplete)
         {
             case 1:
                 level2.interactable = true;

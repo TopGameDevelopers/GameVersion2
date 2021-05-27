@@ -27,7 +27,7 @@ public class LevelController : MonoBehaviour
         else
         {
             if (LevelComplete < sceneIndex)
-                PlayerPrefs.SetInt("LevelComplete", sceneIndex - 1);
+                PlayerPrefs.SetInt("LevelComplete", sceneIndex);
             Invoke("NextLevel", 1f);
         }
     }

@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Gem"))
         {
-            gemAudioSource.Play();
+            //gemAudioSource.Play();
             GetFinishMenu();
             Destroy(other.gameObject);
         }
