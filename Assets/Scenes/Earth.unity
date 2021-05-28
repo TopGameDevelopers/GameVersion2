@@ -944,16 +944,15 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2003042483}
+  - {fileID: 1168090485}
+  - {fileID: 1005928256}
+  - {fileID: 1623164631}
+  - {fileID: 2101115701}
+  - {fileID: 1792366922}
+  - {fileID: 1614270462}
+  - {fileID: 197363301}
+  - {fileID: 1877024304}
 --- !u!50 &73793702
 Rigidbody2D:
   serializedVersion: 4
@@ -1416,16 +1415,15 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2003042483}
+  - {fileID: 1168090485}
+  - {fileID: 1005928256}
+  - {fileID: 1623164631}
+  - {fileID: 2101115701}
+  - {fileID: 1792366922}
+  - {fileID: 1614270462}
+  - {fileID: 197363301}
+  - {fileID: 1877024304}
 --- !u!50 &93864400
 Rigidbody2D:
   serializedVersion: 4
@@ -2228,6 +2226,11 @@ PrefabInstance:
 --- !u!4 &197363300 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7301668380614595509, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 197363299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &197363301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
   m_PrefabInstance: {fileID: 197363299}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &198052651
@@ -9742,6 +9745,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &1005928256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1005928255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006615716
 GameObject:
   m_ObjectHideFlags: 0
@@ -82906,6 +82914,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &1168090485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1168090484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1168513999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90226,16 +90239,15 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2003042483}
+  - {fileID: 1168090485}
+  - {fileID: 1005928256}
+  - {fileID: 1623164631}
+  - {fileID: 2101115701}
+  - {fileID: 1792366922}
+  - {fileID: 1614270462}
+  - {fileID: 197363301}
+  - {fileID: 1877024304}
 --- !u!50 &1467404351
 Rigidbody2D:
   serializedVersion: 4
@@ -91168,6 +91180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &1614270462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1614270461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1623164630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91273,6 +91290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &1623164631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1623164630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641853463
 GameObject:
   m_ObjectHideFlags: 0
@@ -92804,6 +92826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &1792366922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1792366921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1793544649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93759,6 +93786,11 @@ PrefabInstance:
 --- !u!4 &1877024303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7301668380614595509, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 1877024302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1877024304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
   m_PrefabInstance: {fileID: 1877024302}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1886217263 stripped
@@ -95039,16 +95071,15 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2003042483}
+  - {fileID: 1168090485}
+  - {fileID: 1005928256}
+  - {fileID: 1623164631}
+  - {fileID: 2101115701}
+  - {fileID: 1792366922}
+  - {fileID: 1614270462}
+  - {fileID: 197363301}
+  - {fileID: 1877024304}
 --- !u!50 &1968223560
 Rigidbody2D:
   serializedVersion: 4
@@ -95496,6 +95527,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &2003042483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 2003042482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2015136548
 GameObject:
   m_ObjectHideFlags: 0
@@ -95919,16 +95955,15 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2003042483}
+  - {fileID: 1168090485}
+  - {fileID: 1005928256}
+  - {fileID: 1623164631}
+  - {fileID: 2101115701}
+  - {fileID: 1792366922}
+  - {fileID: 1614270462}
+  - {fileID: 197363301}
+  - {fileID: 1877024304}
 --- !u!50 &2049092409
 Rigidbody2D:
   serializedVersion: 4
@@ -96442,6 +96477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+--- !u!1 &2101115701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2326262845533732639, guid: 1c27f618848130a4ea4b1ca69ba6790c, type: 3}
+  m_PrefabInstance: {fileID: 2101115700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2121861986
 PrefabInstance:
   m_ObjectHideFlags: 0

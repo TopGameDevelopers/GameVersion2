@@ -8,7 +8,6 @@ public class SManager : MonoBehaviour
 {
     public void GoToNextLevel()
     {
-        Debug.Log("HVJHVJ");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
     }
