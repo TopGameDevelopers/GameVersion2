@@ -5542,7 +5542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 549854227}
   m_Layer: 0
-  m_Name: Lugas
+  m_Name: Lakes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89084,7 +89084,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstCam: {fileID: 1001021933}
-  RestartCam: {fileID: 509771867}
   BeginCam: {fileID: 0}
   speed: 5
   rigitbody: {fileID: 0}
