@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Camera FirstCam;
-    public Camera FinCam;
     public Camera RestartCam;
     public Camera BeginCam;
 
@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
     public Sprite heart;
     public Sprite emptyHeart;
 
+
+    public Image[] stars;
+    public Sprite fullStar;
+    public Sprite emptyStar;
+
     private AudioSource _coinAudioSource;
     public AudioSource gemAudioSource;
     public AudioSource buttonAudioSource;
@@ -36,7 +41,7 @@ public class PlayerController : MonoBehaviour
     public GameObject chestsCoins;
     public GameObject healing;
 
-    public GameObject Menu;
+    [FormerlySerializedAs("Menu")] public GameObject finalMenu;
     public GameObject RestartMenu;
     public GameObject CCollect;
     public GameObject Health;
@@ -58,8 +63,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
-        Menu.SetActive(false);
-        FinCam.gameObject.SetActive(false);
+        finalMenu.SetActive(false);
         RestartCam.gameObject.SetActive(false);
         RestartMenu.SetActive(false);
     }
@@ -67,14 +71,34 @@ public class PlayerController : MonoBehaviour
     private void GetFinishMenu()
     {
         //transform.SetPositionAndRotation(new Vector3(0, 0, -100f), transform.rotation);
-        FirstCam.gameObject.SetActive(false);
-        FinCam.gameObject.SetActive(true);
-        Menu.SetActive(true);
+        //FirstCam.gameObject.SetActive(false);
+        finalMenu.SetActive(true);
+        ShowStars();
         Time.timeScale = 0f;
         CCollect.gameObject.SetActive(false);
         Health.gameObject.SetActive(false);
         finishText.text = $"✘{CoinCollect.coinCount}";
         Destroy(weapon);
+    }
+
+    private void ShowStars()
+    {
+        foreach (var star in stars)
+        {
+            star.sprite = emptyStar;
+        }
+        if (CoinCollect.coinCount >= 10)
+        {
+            stars[0].sprite = fullStar;
+        }
+        if (CoinCollect.coinCount >= 20)
+        {
+            stars[1].sprite = fullStar;
+        }
+        if (CoinCollect.coinCount >= 30)
+        {
+            stars[2].sprite = fullStar;
+        }
     }
     
     public void FixedUpdate()
@@ -85,13 +109,13 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthSystem()
     {
-        if (health <= 0)
+        /*if (health <= 0)
         {
             //FirstCam.gameObject.SetActive(false);
             //RestartCam.gameObject.SetActive(true);
             RestartMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
-        }
+        }*/
         for (var i = 0; i < hearts.Length; i++)
         {
             hearts[i].sprite = i < health ? heart : emptyHeart;
