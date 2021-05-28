@@ -3028,16 +3028,11 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1888150112}
+  - {fileID: 1288124260}
+  - {fileID: 1051090730}
+  - {fileID: 744503323}
+  - {fileID: 942789826}
 --- !u!50 &369351287
 Rigidbody2D:
   serializedVersion: 4
@@ -4032,16 +4027,11 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1888150112}
+  - {fileID: 1288124260}
+  - {fileID: 1051090730}
+  - {fileID: 744503323}
+  - {fileID: 942789826}
 --- !u!50 &444551325
 Rigidbody2D:
   serializedVersion: 4
@@ -5463,16 +5453,11 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1888150112}
+  - {fileID: 1288124260}
+  - {fileID: 1051090730}
+  - {fileID: 744503323}
+  - {fileID: 942789826}
 --- !u!50 &656808104
 Rigidbody2D:
   serializedVersion: 4
@@ -92416,16 +92401,11 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1888150112}
+  - {fileID: 1288124260}
+  - {fileID: 1051090730}
+  - {fileID: 744503323}
+  - {fileID: 942789826}
 --- !u!50 &1613020358
 Rigidbody2D:
   serializedVersion: 4
@@ -93246,16 +93226,11 @@ MonoBehaviour:
   rigitbody: {fileID: 0}
   fieldOfView: 4
   obstacleObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1888150112}
+  - {fileID: 1288124260}
+  - {fileID: 1051090730}
+  - {fileID: 744503323}
+  - {fileID: 942789826}
 --- !u!50 &1711542964
 Rigidbody2D:
   serializedVersion: 4
