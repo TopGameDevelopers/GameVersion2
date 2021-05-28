@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Moon.unity
     guid: 88016812cbd591448b35624644445288
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 14b71cc8f6b9c0c4aa45feb0479b8cde
   m_configObjects: {}

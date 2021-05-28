@@ -23,4 +23,9 @@ public class SManager : MonoBehaviour
         //Debug.Log(Camera.allCameras.ToString());
         main.SetActive(true);
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
