@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 68494754}
   - component: {fileID: 68494753}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88916,7 +88916,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354583322}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5507651946336786027, guid: 323c88ad73ab8744f8798e72b6c450d0, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6cd91d8a806eb9941921145ecd6c08f6, type: 3}
@@ -89083,8 +89083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e22abdf8fda204a9bc3e2a967860f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstCam: {fileID: 1001021933}
-  BeginCam: {fileID: 0}
+  firstCam: {fileID: 1001021933}
+  beginCam: {fileID: 0}
   speed: 5
   rigitbody: {fileID: 0}
   anim: {fileID: 0}
@@ -89112,10 +89112,9 @@ MonoBehaviour:
   chestsCoins: {fileID: 1053714121349991187, guid: a8a5e87987573d34fbda5c7d76e09932, type: 3}
   healing: {fileID: 5796827875067850275, guid: 2efcd419018a69d438de1834c964dc6d, type: 3}
   finalMenu: {fileID: 268710233}
-  RestartMenu: {fileID: 392229440}
-  CCollect: {fileID: 806527571}
+  restartMenu: {fileID: 392229440}
+  cCollect: {fileID: 806527571}
   Health: {fileID: 191483653}
-  finishText: {fileID: 0}
 --- !u!212 &1354583328
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -7,19 +7,17 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public Camera FirstCam;
-    public Camera BeginCam;
+    [FormerlySerializedAs("FirstCam")] public Camera firstCam;
+    [FormerlySerializedAs("BeginCam")] public Camera beginCam;
 
     public float speed;
     public Rigidbody2D rigitbody;
     public Animator anim;
 
-    private bool facingLeft;
+    private bool _facingLeft;
 
     public GameObject weapon;
     public GameObject openedChest;
-
-    private int coinCount;
 
     public int health;
     public int heartsNumber;
@@ -27,8 +25,7 @@ public class PlayerController : MonoBehaviour
     public Image[] hearts;
     public Sprite heart;
     public Sprite emptyHeart;
-
-
+    
     public Image[] stars;
     public Sprite fullStar;
     public Sprite emptyStar;
@@ -41,28 +38,27 @@ public class PlayerController : MonoBehaviour
     public GameObject healing;
 
     [FormerlySerializedAs("Menu")] public GameObject finalMenu;
-    public GameObject RestartMenu;
-    public GameObject CCollect;
+    [FormerlySerializedAs("RestartMenu")] public GameObject restartMenu;
+    [FormerlySerializedAs("CCollect")] public GameObject cCollect;
     public GameObject Health;
-    public Text finishText;
 
     public void Start()
     {
-        if (BeginCam != null)
+        if (beginCam != null)
         {
-            BeginCam.gameObject.SetActive(true);
-            FirstCam.gameObject.SetActive(false);
+            beginCam.gameObject.SetActive(true);
+            firstCam.gameObject.SetActive(false);
         }
         else
         {
-            FirstCam.gameObject.SetActive(true);
+            firstCam.gameObject.SetActive(true);
         }
         Time.timeScale = 1f;
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
         finalMenu.SetActive(false);
-        RestartMenu.SetActive(false);
+        restartMenu.SetActive(false);
     }
 
     private void GetFinishMenu()
@@ -70,9 +66,8 @@ public class PlayerController : MonoBehaviour
         finalMenu.SetActive(true);
         ShowStars();
         Time.timeScale = 0f;
-        CCollect.gameObject.SetActive(false);
+        cCollect.gameObject.SetActive(false);
         Health.gameObject.SetActive(false);
-        finishText.text = $"✘{CoinCollect.coinCount}";
         Destroy(weapon);
     }
 
@@ -124,13 +119,13 @@ public class PlayerController : MonoBehaviour
         var moveInputY = Input.GetAxis("Vertical");
         anim.SetBool("IsRunning", moveInputX != 0 || moveInputY != 0);
         rigitbody.velocity = new Vector2(moveInputX, moveInputY) * speed;
-        if (moveInputX > 0 && !facingLeft || moveInputX < 0 && facingLeft)
+        if (moveInputX > 0 && !_facingLeft || moveInputX < 0 && _facingLeft)
             Flip();
     }
 
     private void Flip()
     {
-        facingLeft = !facingLeft;
+        _facingLeft = !_facingLeft;
         var scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
@@ -161,7 +156,6 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Gem"))
         {
-            //gemAudioSource.Play();
             GetFinishMenu();
             Destroy(other.gameObject);
         }
