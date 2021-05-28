@@ -10,7 +10,6 @@ namespace Monster
     {
         public GameObject player;
         [FormerlySerializedAs("Speed")] public float speed;
-        public Rigidbody2D rigitbody;
         private AudioSource _audio;
         public int fieldOfView;
 
@@ -20,7 +19,6 @@ namespace Monster
          
         public void Start()
         {
-            rigitbody = GetComponent<Rigidbody2D>();
             _audio = GetComponent<AudioSource>();
             GetObstaclesCoordinates();
         }

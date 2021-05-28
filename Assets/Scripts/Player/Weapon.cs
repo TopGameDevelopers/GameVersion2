@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     public Camera playCamera;
 
     private float _timeShot;
-    private bool facingLeft;
+    private bool _facingLeft;
     private AudioSource _audio;
 
     void Start()
@@ -32,10 +32,10 @@ public class Weapon : MonoBehaviour
         var rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + offset);
 
-        if (rotateZ + offset >= 90 && rotateZ + offset <= 180 && !facingLeft ||
-            rotateZ + offset > -180 && rotateZ + offset < -90 && !facingLeft ||
-            rotateZ + offset >= 0 && rotateZ + offset < 90 && facingLeft ||
-            rotateZ + offset >= -90 && rotateZ + offset < 0 && facingLeft)
+        if (rotateZ + offset >= 90 && rotateZ + offset <= 180 && !_facingLeft ||
+            rotateZ + offset > -180 && rotateZ + offset < -90 && !_facingLeft ||
+            rotateZ + offset >= 0 && rotateZ + offset < 90 && _facingLeft ||
+            rotateZ + offset >= -90 && rotateZ + offset < 0 && _facingLeft)
             Flip();
     }
 
@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
     
     private void Flip()
     {
-        facingLeft = !facingLeft;
+        _facingLeft = !_facingLeft;
         var scaler = transform.localScale;
         scaler.y *= -1;
         transform.localScale = scaler;

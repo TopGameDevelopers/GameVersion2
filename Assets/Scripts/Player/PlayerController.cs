@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -79,21 +76,13 @@ public class PlayerController : MonoBehaviour
     private void ShowStars()
     {
         foreach (var star in stars)
-        {
             star.sprite = emptyStar;
-        }
         if (CoinCollect.coinCount >= 10)
-        {
             stars[0].sprite = fullStar;
-        }
         if (CoinCollect.coinCount >= 20)
-        {
             stars[1].sprite = fullStar;
-        }
         if (CoinCollect.coinCount >= 30)
-        {
             stars[2].sprite = fullStar;
-        }
     }
     
     public void FixedUpdate()
@@ -107,8 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         if (health <= 0)
         {
-            //FirstCam.gameObject.SetActive(false);
-            //RestartCam.gameObject.SetActive(true);
             restartMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -122,9 +109,7 @@ public class PlayerController : MonoBehaviour
     private void WaitSkip()
     {
         if (Input.anyKey && beginCam.isActiveAndEnabled)
-        {
             StartGame();
-        }
     }
 
     private void MovePlayer()
@@ -149,7 +134,6 @@ public class PlayerController : MonoBehaviour
     public void StartGame()
     {
         beginCam.gameObject.SetActive(false);
-        //Debug.Log(Camera.allCameras.ToString());
         firstCam.gameObject.SetActive(true);
         AudioListener.volume = _volume;
     }

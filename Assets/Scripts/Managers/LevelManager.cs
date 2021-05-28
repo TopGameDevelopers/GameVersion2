@@ -8,12 +8,6 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void LoadTo(int level)
     {
         SceneManager.LoadScene(level);

@@ -12,15 +12,7 @@ public class FireBall : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-        if (other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Wall") || other.CompareTag("Player") || other.CompareTag("Monster"))
         {
             Destroy(gameObject);
         }

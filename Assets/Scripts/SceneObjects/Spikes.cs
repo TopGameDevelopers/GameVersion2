@@ -41,8 +41,6 @@ public class Spikes : MonoBehaviour
             _timeShot = startTime;
         }
         else
-        {
             _timeShot -= Time.deltaTime;
-        }
     }
 }
