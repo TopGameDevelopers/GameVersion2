@@ -89120,7 +89120,7 @@ MonoBehaviour:
   - {fileID: 1491736936}
   fullStar: {fileID: 21300000, guid: 0208e85a9908b0c4baa48b7c1899a4d6, type: 3}
   emptyStar: {fileID: 21300000, guid: 2f5976828257dff42a1651d62d07144a, type: 3}
-  gemAudioSource: {fileID: 5441582609707141985, guid: 52cb7e63b1e09304595af508c3bfb2fc, type: 3}
+  gemAudioSource: {fileID: 2107900774}
   buttonAudioSource: {fileID: 1685621030}
   healingAudioSource: {fileID: 1107805298}
   chestsCoins: {fileID: 1053714121349991187, guid: a8a5e87987573d34fbda5c7d76e09932, type: 3}
