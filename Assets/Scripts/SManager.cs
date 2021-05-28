@@ -17,13 +17,6 @@ public class SManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void StartGame(GameObject main)
-    {
-        Camera.allCameras.First(x => x.name == "BeginCam").gameObject.SetActive(false);
-        //Debug.Log(Camera.allCameras.ToString());
-        main.SetActive(true);
-    }
-
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);

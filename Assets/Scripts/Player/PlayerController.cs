@@ -42,12 +42,16 @@ public class PlayerController : MonoBehaviour
     [FormerlySerializedAs("CCollect")] public GameObject cCollect;
     public GameObject Health;
 
+    private float _volume;
+
     public void Start()
     {
         if (beginCam != null)
         {
             beginCam.gameObject.SetActive(true);
             firstCam.gameObject.SetActive(false);
+            _volume = AudioListener.volume;
+            AudioListener.volume = 0f;
         }
         else
         {
@@ -119,8 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.anyKey && beginCam.isActiveAndEnabled)
         {
-            beginCam.gameObject.SetActive(false);
-            firstCam.gameObject.SetActive(true);
+            StartGame();
         }
     }
 
@@ -142,7 +145,15 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scaler;
         weapon.transform.localScale = scaler;
     }
-
+    
+    public void StartGame()
+    {
+        beginCam.gameObject.SetActive(false);
+        //Debug.Log(Camera.allCameras.ToString());
+        firstCam.gameObject.SetActive(true);
+        AudioListener.volume = _volume;
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("DamageObject") || other.CompareTag("Monster") || other.CompareTag("Spikes"))
