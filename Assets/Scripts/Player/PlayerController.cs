@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
             FirstCam.gameObject.SetActive(true);
         }
         Time.timeScale = 1f;
-        BeginCam.gameObject.SetActive(true);
         anim = GetComponent<Animator>();
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
@@ -70,8 +69,6 @@ public class PlayerController : MonoBehaviour
 
     private void GetFinishMenu()
     {
-        //transform.SetPositionAndRotation(new Vector3(0, 0, -100f), transform.rotation);
-        //FirstCam.gameObject.SetActive(false);
         finalMenu.SetActive(true);
         ShowStars();
         Time.timeScale = 0f;
