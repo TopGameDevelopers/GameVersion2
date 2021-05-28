@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     private void GetFinishMenu()
     {
         finalMenu.SetActive(true);
+        gemAudioSource.Play();
         ShowStars();
         Time.timeScale = 0f;
         cCollect.gameObject.SetActive(false);
@@ -99,13 +100,13 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthSystem()
     {
-        /*if (health <= 0)
+        if (health <= 0)
         {
             //FirstCam.gameObject.SetActive(false);
             //RestartCam.gameObject.SetActive(true);
-            RestartMenu.gameObject.SetActive(true);
+            restartMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
-        }*/
+        }
         for (var i = 0; i < hearts.Length; i++)
         {
             hearts[i].sprite = i < health ? heart : emptyHeart;
