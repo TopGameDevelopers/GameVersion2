@@ -1,0 +1,16 @@
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.csprojAssemblyReference.cache
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.AssemblyInfoInputs.cache
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.AssemblyInfo.cs
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.exe
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.deps.json
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.runtimeconfig.json
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.runtimeconfig.dev.json
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.dll
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\ref\AStar.dll
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\bin\Debug\net5.0\AStar.pdb
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.dll
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\ref\AStar.dll
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.pdb
+C:\Users\Пользователь\Desktop\AStar\AStar\AStar\obj\Debug\net5.0\AStar.genruntimeconfig.cache
