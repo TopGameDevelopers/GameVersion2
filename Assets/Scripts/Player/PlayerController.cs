@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public Camera FirstCam;
-    public Camera RestartCam;
     public Camera BeginCam;
 
     public float speed;
@@ -63,7 +62,6 @@ public class PlayerController : MonoBehaviour
         rigitbody = GetComponent<Rigidbody2D>();
         _coinAudioSource = GetComponent<AudioSource>();
         finalMenu.SetActive(false);
-        RestartCam.gameObject.SetActive(false);
         RestartMenu.SetActive(false);
     }
 
