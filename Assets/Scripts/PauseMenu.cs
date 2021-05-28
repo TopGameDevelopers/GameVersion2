@@ -47,14 +47,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("restart");
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void GoToSelectLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void QuitGame()
     {
-        //Debug.Log("quit");
         Application.Quit();
     }
 
