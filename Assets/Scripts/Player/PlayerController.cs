@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         UpdateHealthSystem();
         MovePlayer();
+        WaitSkip();
     }
 
     private void UpdateHealthSystem()
@@ -111,6 +112,15 @@ public class PlayerController : MonoBehaviour
         {
             hearts[i].sprite = i < health ? heart : emptyHeart;
             hearts[i].enabled = i < heartsNumber;
+        }
+    }
+
+    private void WaitSkip()
+    {
+        if (Input.anyKey && beginCam.isActiveAndEnabled)
+        {
+            beginCam.gameObject.SetActive(false);
+            firstCam.gameObject.SetActive(true);
         }
     }
 
