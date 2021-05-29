@@ -39,17 +39,6 @@ public class PauseMenu : MonoBehaviour
         backButton.SetActive(true);
     }
 
-    /*public void Restart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }*/
-
-    /*public void GoToSelectLevel()
-    {
-        SceneManager.LoadScene(1);
-    }*/
-
     public void QuitGame()
     {
         Application.Quit();
