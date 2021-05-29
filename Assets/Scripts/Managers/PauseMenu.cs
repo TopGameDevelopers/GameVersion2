@@ -13,16 +13,10 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             if (_gameIsPaused)
-            {
                 ContinueGame();
-            }
             else
-            {
                 Pause();
-            }
-        }
     }
 
     public void ContinueGame()
@@ -45,16 +39,16 @@ public class PauseMenu : MonoBehaviour
         backButton.SetActive(true);
     }
 
-    public void Restart()
+    /*public void Restart()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    }*/
 
-    public void GoToSelectLevel()
+    /*public void GoToSelectLevel()
     {
         SceneManager.LoadScene(1);
-    }
+    }*/
 
     public void QuitGame()
     {

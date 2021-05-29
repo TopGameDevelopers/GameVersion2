@@ -12,8 +12,9 @@ public class SManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void GoToMenu()
+    public void GoToSelectLevelMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
 
@@ -25,5 +26,11 @@ public class SManager : MonoBehaviour
     public void SelectLevel(int level)
     {
         SceneManager.LoadScene(level);
+    }
+    
+    public void ReloadActive()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
