@@ -1,25 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Player
 {
-    public float speed;
-    public float destroyTime;
-
-    void Start()
+    public class Bullet : MonoBehaviour
     {
-        Invoke(nameof(DestroyBullet), destroyTime);
-    }
+        public float speed;
+        public float destroyTime;
+
+        void Start()
+        {
+            Invoke(nameof(DestroyBullet), destroyTime);
+        }
     
-    void Update()
-    {
-        transform.Translate(Vector2.right * (speed * Time.deltaTime));
-    }
+        void Update()
+        {
+            transform.Translate(Vector2.right * (speed * Time.deltaTime));
+        }
 
-    private void DestroyBullet()
-    {
-        Destroy(gameObject);
+        private void DestroyBullet()
+        {
+            Destroy(gameObject);
+        }
     }
 }

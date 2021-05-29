@@ -18,6 +18,7 @@
       <Path>Library/PackageCache/com.unity.ide.vscode@1.2.3</Path>
       <Path>Library/PackageCache/com.unity.mathematics@1.1.0</Path>
       <Path>Library/PackageCache/com.unity.purchasing@2.2.2</Path>
+      <Path>Library/PackageCache/com.unity.purchasing@3.0.1</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.1.24</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.4</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.5.4</Path>
@@ -31,6 +32,7 @@
       <Path>AStar</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Temp</Path>
       <Path>UserSettings</Path>
       <Path>obj</Path>
     </explicitExcludes>
