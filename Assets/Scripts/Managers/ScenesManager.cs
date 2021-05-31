@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SManager : MonoBehaviour
+public class ScenesManager : MonoBehaviour
 {
     public void GoToNextLevel()
     {

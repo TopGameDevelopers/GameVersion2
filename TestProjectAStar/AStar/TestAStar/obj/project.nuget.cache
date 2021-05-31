@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qf+rQ9Q0wcNQLXDrU1Dd8qcHj2gShD2SmKm4OyVBFtMO28YQ8F7NdQYvNWOtQ70hFnzZnQvUrWzItZozBL/E9Q==",
+  "dgSpecHash": "BFbXaVORbyhrtUpb9+aCUD5l7XI3NLrJaeJJybWQqd0c6T/D0TA1ZZe9J11eFMsu5qFEDz9f5iPk+y2esqlC/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\TestAStar\\TestAStar.csproj",
+  "projectFilePath": "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\TestAStar\\TestAStar.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Пользователь\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\Пользователь\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

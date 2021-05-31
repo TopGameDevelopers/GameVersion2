@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\AStar\\AStar.csproj": {}
+    "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\AStar\\AStar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\AStar\\AStar.csproj": {
+    "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\AStar\\AStar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\AStar\\AStar.csproj",
+        "projectUniqueName": "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\AStar\\AStar.csproj",
         "projectName": "AStar",
-        "projectPath": "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\AStar\\AStar.csproj",
+        "projectPath": "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\AStar\\AStar.csproj",
         "packagesPath": "C:\\Users\\Пользователь\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Пользователь\\Desktop\\AStar\\AStar\\AStar\\obj\\",
+        "outputPath": "C:\\Users\\Пользователь\\Desktop\\Game\\TestProjectAStar\\AStar\\AStar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Пользователь\\AppData\\Roaming\\NuGet\\NuGet.Config",
