@@ -14,16 +14,22 @@ namespace Player
         public Animator anim;
 
         private bool _facingLeft;
+        private bool _damagedRecently;
 
         public GameObject weapon;
         public GameObject openedChest;
 
         public int health;
         public int heartsNumber;
+        public float imperviousModeTime;
+        private float _imperviousModeTimeLeft;
 
         public Image[] hearts;
         public Sprite heart;
         public Sprite emptyHeart;
+        
+        private SpriteRenderer[] _playerBodySprites;
+        private Color _defaultPlayerColor;
     
         public Image[] stars;
         public Sprite fullStar;
@@ -60,6 +66,11 @@ namespace Player
             anim = GetComponent<Animator>();
             rigitbody = GetComponent<Rigidbody2D>();
             _coinAudioSource = GetComponent<AudioSource>();
+
+            _playerBodySprites = GetComponentsInChildren<SpriteRenderer>();
+            _defaultPlayerColor = _playerBodySprites[0].color;
+            _imperviousModeTimeLeft = imperviousModeTime;
+
             finalMenu.SetActive(false);
             restartMenu.SetActive(false);
         }
@@ -92,6 +103,29 @@ namespace Player
             UpdateHealthSystem();
             MovePlayer();
             WaitSkip();
+            UpdateDamageSystem();
+        }
+
+        private void UpdateDamageSystem()
+        {
+            if (_damagedRecently)
+            {
+                if (_imperviousModeTimeLeft <= 0)
+                {
+                    _damagedRecently = false;
+                    
+                    foreach (var playerBodySprite in _playerBodySprites)
+                    {
+                        playerBodySprite.color = _defaultPlayerColor;
+                    }
+                    
+                    _imperviousModeTimeLeft = imperviousModeTime;
+                }
+                else
+                {
+                    _imperviousModeTimeLeft -= Time.deltaTime;
+                }
+            }
         }
 
         private void UpdateHealthSystem()
@@ -139,13 +173,30 @@ namespace Player
             firstCam.gameObject.SetActive(true);
             AudioListener.volume = _volume;
         }
-    
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("DamageObject") || other.CompareTag("Monster") || other.CompareTag("Spikes"))
+            if (other.CompareTag("DamageObject") || other.CompareTag("Spikes"))
             {
                 health--;
                 heartsNumber--;
+            }
+
+            if (other.CompareTag("Monster"))
+            {
+                if (!_damagedRecently)
+                {
+                    _damagedRecently = true;
+
+                    foreach (var playerBodySprite in _playerBodySprites)
+                    {
+                        playerBodySprite.color = new Color(_defaultPlayerColor.r,
+                            _defaultPlayerColor.g, _defaultPlayerColor.b, 0.8f);
+                    }
+                    
+                    health--;
+                    heartsNumber--;
+                }
             }
 
             if (other.CompareTag("Lava"))
