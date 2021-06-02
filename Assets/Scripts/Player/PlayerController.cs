@@ -30,6 +30,7 @@ namespace Player
         
         private SpriteRenderer[] _playerBodySprites;
         private Color _defaultPlayerColor;
+        private Color _recentlyDamagedColor;
     
         public Image[] stars;
         public Sprite fullStar;
@@ -69,6 +70,8 @@ namespace Player
 
             _playerBodySprites = GetComponentsInChildren<SpriteRenderer>();
             _defaultPlayerColor = _playerBodySprites[0].color;
+            _recentlyDamagedColor = new Color(_defaultPlayerColor.r,
+                _defaultPlayerColor.g, _defaultPlayerColor.b, 0.6f);
             _imperviousModeTimeLeft = imperviousModeTime;
 
             finalMenu.SetActive(false);
@@ -109,23 +112,14 @@ namespace Player
         private void UpdateDamageSystem()
         {
             if (_damagedRecently)
-            {
                 if (_imperviousModeTimeLeft <= 0)
                 {
                     _damagedRecently = false;
-                    
-                    foreach (var playerBodySprite in _playerBodySprites)
-                    {
-                        playerBodySprite.color = _defaultPlayerColor;
-                    }
-                    
+                    ChangePlayerColor(_defaultPlayerColor);
                     _imperviousModeTimeLeft = imperviousModeTime;
                 }
                 else
-                {
                     _imperviousModeTimeLeft -= Time.deltaTime;
-                }
-            }
         }
 
         private void UpdateHealthSystem()
@@ -173,6 +167,12 @@ namespace Player
             firstCam.gameObject.SetActive(true);
             AudioListener.volume = _volume;
         }
+
+        private void ChangePlayerColor(Color color)
+        {
+            foreach (var playerBodySprite in _playerBodySprites) 
+                playerBodySprite.color = color;
+        }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -184,19 +184,7 @@ namespace Player
 
             if (other.CompareTag("Monster"))
             {
-                if (!_damagedRecently)
-                {
-                    _damagedRecently = true;
-
-                    foreach (var playerBodySprite in _playerBodySprites)
-                    {
-                        playerBodySprite.color = new Color(_defaultPlayerColor.r,
-                            _defaultPlayerColor.g, _defaultPlayerColor.b, 0.8f);
-                    }
-                    
-                    health--;
-                    heartsNumber--;
-                }
+                ProcessMonsterAttack();
             }
 
             if (other.CompareTag("Lava"))
@@ -251,6 +239,22 @@ namespace Player
                 Instantiate(openedChest, other.transform.position, Quaternion.identity);
                 _coinAudioSource.Play();
                 Instantiate(chestsCoins, transform.position, Quaternion.identity);
+            }
+
+            if (other.CompareTag("Monster"))
+            {
+                ProcessMonsterAttack();
+            }
+        }
+
+        private void ProcessMonsterAttack()
+        {
+            if (!_damagedRecently)
+            {
+                _damagedRecently = true;
+                ChangePlayerColor(_recentlyDamagedColor);
+                health--;
+                heartsNumber--;
             }
         }
     }
