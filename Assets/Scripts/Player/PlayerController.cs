@@ -220,6 +220,15 @@ namespace Player
             {
                 buttonAudioSource.Play();
             }
+            
+            if (other.CompareTag("Chest"))
+            {
+                CoinCollect.CoinCount += 5;
+                Destroy(other.gameObject);
+                Instantiate(openedChest, other.transform.position, Quaternion.identity);
+                _coinAudioSource.Play();
+                Instantiate(chestsCoins, transform.position, Quaternion.identity);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -232,15 +241,6 @@ namespace Player
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.CompareTag("Chest") && Input.GetKeyDown(KeyCode.C))
-            {
-                CoinCollect.CoinCount += 5;
-                Destroy(other.gameObject);
-                Instantiate(openedChest, other.transform.position, Quaternion.identity);
-                _coinAudioSource.Play();
-                Instantiate(chestsCoins, transform.position, Quaternion.identity);
-            }
-
             if (other.CompareTag("Monster"))
             {
                 ProcessMonsterAttack();
