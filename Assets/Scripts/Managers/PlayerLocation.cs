@@ -22,6 +22,9 @@ public class PlayerLocation : MonoBehaviour
 
         var (mapImageLeftCornerX, mapImageLeftCornerY) = (map.transform.position.x - mapImageWidth/2,
             map.transform.position.y - mapImageHeight/2);
+        
+        Debug.Log(mapImageLeftCornerX);
+        Debug.Log(mapImageLeftCornerY);
 
         transform.position = new Vector2(mapImageLeftCornerX + offsets.Item1 * mapImageWidth / levelMapWidth,
             mapImageLeftCornerY + offsets.Item2 * mapImageHeight / levelMapHeight);
