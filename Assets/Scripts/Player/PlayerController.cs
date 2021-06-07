@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -23,6 +24,9 @@ namespace Player
         public int heartsNumber;
         public float imperviousModeTime;
         private float _imperviousModeTimeLeft;
+
+        public int level;
+        public int startsAmount;
 
         public Image[] hearts;
         public Sprite heart;
@@ -87,6 +91,10 @@ namespace Player
             cCollect.gameObject.SetActive(false);
             Health.gameObject.SetActive(false);
             Destroy(weapon);
+            
+            /*SaveSystem.SaveProgress(this);
+            Debug.Log(SaveSystem.LoadProgress().Level);
+            Debug.Log(SaveSystem.LoadProgress().Stars);*/
         }
 
         private void ShowStars()
@@ -94,11 +102,22 @@ namespace Player
             foreach (var star in stars)
                 star.sprite = emptyStar;
             if (CoinCollect.CoinCount >= 10)
+            {
                 stars[0].sprite = fullStar;
+                startsAmount++;
+            }
+
             if (CoinCollect.CoinCount >= 20)
+            {
                 stars[1].sprite = fullStar;
+                startsAmount++;
+            }
+
             if (CoinCollect.CoinCount >= 30)
+            {
                 stars[2].sprite = fullStar;
+                startsAmount++;
+            }
         }
     
         public void FixedUpdate()
