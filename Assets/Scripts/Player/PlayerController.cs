@@ -26,9 +26,11 @@ namespace Player
         public float imperviousModeTime;
         private float _imperviousModeTimeLeft;
 
+        
         public int level;
-        public HashSet<int> levelsCompleted;
+        //public HashSet<int> levelsCompleted;
         public int startsAmount;
+        //public Dictionary<int, int> progressInformation;
 
         public Image[] hearts;
         public Sprite heart;
@@ -101,16 +103,26 @@ namespace Player
 
         private void SaveProgress()
         {
-            GetLevelsCompleted();
-            SaveSystem.SaveProgress(this);
+            var progressInformation = GetProgressInformation();
+            SaveSystem.SaveProgress(progressInformation);
         }
 
-        private void GetLevelsCompleted()
+        private Dictionary<int, int> GetProgressInformation()
         {
-            if (!SaveSystem.LoadProgress().LevelsCompleted.Contains(level))
+            var playerData = SaveSystem.LoadProgress();
+            
+            if (playerData is null)
             {
-                levelsCompleted.Add(level);
+                var progressInfo = new Dictionary<int, int>();
+                progressInfo[level] = startsAmount;
+                return progressInfo;
             }
+            
+            if (playerData.ProgressInformation.ContainsKey(level) &&
+                     playerData.ProgressInformation[level] < startsAmount)
+                playerData.ProgressInformation[level] = startsAmount;
+            return playerData.ProgressInformation;
+            
         }
 
         private void ShowStars()

@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
-    public HashSet<int> LevelsCompleted;
+    /*public HashSet<int> LevelsCompleted;
     //public int Level;
     public int Stars;
 
@@ -15,5 +15,10 @@ public class PlayerData
     {
         LevelsCompleted = player.levelsCompleted;
         Stars = player.startsAmount;
+    }*/
+    public Dictionary<int, int> ProgressInformation; 
+    public PlayerData(Dictionary<int, int> progressInformation)
+    {
+        ProgressInformation = progressInformation;
     }
 }
