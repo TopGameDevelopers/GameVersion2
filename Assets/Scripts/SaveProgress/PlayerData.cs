@@ -1,17 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class PlayerData
 {
-    public int Level;
+    public HashSet<int> LevelsCompleted;
+    //public int Level;
     public int Stars;
 
     public PlayerData(PlayerController player)
     {
-        Level = player.level;
+        LevelsCompleted = player.levelsCompleted;
         Stars = player.startsAmount;
     }
 }

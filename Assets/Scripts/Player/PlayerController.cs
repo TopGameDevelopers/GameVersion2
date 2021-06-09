@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -26,6 +27,7 @@ namespace Player
         private float _imperviousModeTimeLeft;
 
         public int level;
+        public HashSet<int> levelsCompleted;
         public int startsAmount;
 
         public Image[] hearts;
@@ -78,6 +80,8 @@ namespace Player
                 _defaultPlayerColor.g, _defaultPlayerColor.b, 0.6f);
             _imperviousModeTimeLeft = imperviousModeTime;
 
+            level = SceneManager.GetActiveScene().buildIndex - 1;
+
             finalMenu.SetActive(false);
             restartMenu.SetActive(false);
         }
@@ -92,9 +96,21 @@ namespace Player
             Health.gameObject.SetActive(false);
             Destroy(weapon);
             
-            /*SaveSystem.SaveProgress(this);
-            Debug.Log(SaveSystem.LoadProgress().Level);
-            Debug.Log(SaveSystem.LoadProgress().Stars);*/
+            SaveProgress();
+        }
+
+        private void SaveProgress()
+        {
+            GetLevelsCompleted();
+            SaveSystem.SaveProgress(this);
+        }
+
+        private void GetLevelsCompleted()
+        {
+            if (!SaveSystem.LoadProgress().LevelsCompleted.Contains(level))
+            {
+                levelsCompleted.Add(level);
+            }
         }
 
         private void ShowStars()

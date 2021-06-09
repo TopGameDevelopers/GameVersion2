@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class UpdateLevels : MonoBehaviour
 {
+    public UnityEngine.UI.Button moonLevelButton;
     void Start()
     {
-        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("LevelComplete", sceneIndex - 1);
+        var playerData = SaveSystem.LoadProgress();
+        if (playerData is null || playerData.LevelsCompleted.Count < 3)
+        {
+            moonLevelButton.interactable = false;
+        }
     }
 }
