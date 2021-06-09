@@ -10,7 +10,7 @@ public static class SaveSystem
     public static void SaveProgress(Dictionary<int, int> progressInformation)
     {
         var formatter = new BinaryFormatter();
-        var path = "./player.fun";
+        var path = GetProgressFilePath();
         var stream = new FileStream(path, FileMode.OpenOrCreate);
 
         var playerData = new PlayerData(progressInformation);
@@ -21,7 +21,7 @@ public static class SaveSystem
 
     public static PlayerData LoadProgress()
     {
-        var path = "./player.fun";
+        var path = GetProgressFilePath();
         if (File.Exists(path))
         {
             var formatter = new BinaryFormatter();
@@ -34,4 +34,7 @@ public static class SaveSystem
         Debug.LogError($"Save Progress File has not been found in {path}");
         return null;
     }
+
+    private static string GetProgressFilePath() => 
+        Path.Combine(Directory.GetCurrentDirectory(), "player.fun");
 }
