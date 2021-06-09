@@ -35,7 +35,6 @@ public class UpdateLevels : MonoBehaviour
         {
             for (var i = 0; i < levelInfo.Value; i++)
             {
-                Debug.Log(stars.ToString());
                 stars[levelInfo.Key][i].enabled = true;
                 starsAmount++;
             }

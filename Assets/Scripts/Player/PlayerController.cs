@@ -119,7 +119,8 @@ namespace Player
             }
             
             if (playerData.ProgressInformation.ContainsKey(level) &&
-                     playerData.ProgressInformation[level] < startsAmount)
+                playerData.ProgressInformation[level] < startsAmount ||
+                !playerData.ProgressInformation.ContainsKey(level))
                 playerData.ProgressInformation[level] = startsAmount;
             return playerData.ProgressInformation;
             

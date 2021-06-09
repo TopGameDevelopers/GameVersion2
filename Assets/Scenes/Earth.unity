@@ -82614,6 +82614,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moonLevelButton: {fileID: 0}
+  marsStars: []
+  enceladStars: []
+  earthStars: []
+  moonStars: []
 --- !u!114 &1138508344
 MonoBehaviour:
   m_ObjectHideFlags: 0
