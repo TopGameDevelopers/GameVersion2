@@ -97583,6 +97583,13 @@ MonoBehaviour:
   - {fileID: 226176744}
   - {fileID: 1037848196}
   - {fileID: 1456923792}
+  - {fileID: 411704569}
+  - {fileID: 983274023}
+  - {fileID: 1072377682}
+  - {fileID: 355276402}
+  - {fileID: 203277566}
+  - {fileID: 764756108}
+  - {fileID: 1152230360}
   minimapLocation:
   - {fileID: 1509578383}
   - {fileID: 1618473704}
@@ -97596,6 +97603,13 @@ MonoBehaviour:
   - {fileID: 878032464}
   - {fileID: 83398027}
   - {fileID: 416206586}
+  - {fileID: 909845085}
+  - {fileID: 206295933}
+  - {fileID: 176094912}
+  - {fileID: 10919787}
+  - {fileID: 533793381}
+  - {fileID: 259747097}
+  - {fileID: 990358369}
 --- !u!114 &2113895230
 MonoBehaviour:
   m_ObjectHideFlags: 0
