@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -23,6 +25,12 @@ namespace Player
         public int heartsNumber;
         public float imperviousModeTime;
         private float _imperviousModeTimeLeft;
+
+        
+        public int level;
+        //public HashSet<int> levelsCompleted;
+        public int startsAmount;
+        //public Dictionary<int, int> progressInformation;
 
         public Image[] hearts;
         public Sprite heart;
@@ -74,6 +82,8 @@ namespace Player
                 _defaultPlayerColor.g, _defaultPlayerColor.b, 0.6f);
             _imperviousModeTimeLeft = imperviousModeTime;
 
+            level = SceneManager.GetActiveScene().buildIndex - 1;
+
             finalMenu.SetActive(false);
             restartMenu.SetActive(false);
         }
@@ -87,6 +97,33 @@ namespace Player
             cCollect.gameObject.SetActive(false);
             Health.gameObject.SetActive(false);
             Destroy(weapon);
+            
+            SaveProgress();
+        }
+
+        private void SaveProgress()
+        {
+            var progressInformation = GetProgressInformation();
+            SaveSystem.SaveProgress(progressInformation);
+        }
+
+        private Dictionary<int, int> GetProgressInformation()
+        {
+            var playerData = SaveSystem.LoadProgress();
+            
+            if (playerData is null)
+            {
+                var progressInfo = new Dictionary<int, int>();
+                progressInfo[level] = startsAmount;
+                return progressInfo;
+            }
+            
+            if (playerData.ProgressInformation.ContainsKey(level) &&
+                playerData.ProgressInformation[level] < startsAmount ||
+                !playerData.ProgressInformation.ContainsKey(level))
+                playerData.ProgressInformation[level] = startsAmount;
+            return playerData.ProgressInformation;
+            
         }
 
         private void ShowStars()
@@ -94,11 +131,22 @@ namespace Player
             foreach (var star in stars)
                 star.sprite = emptyStar;
             if (CoinCollect.CoinCount >= 10)
+            {
                 stars[0].sprite = fullStar;
+                startsAmount++;
+            }
+
             if (CoinCollect.CoinCount >= 20)
+            {
                 stars[1].sprite = fullStar;
+                startsAmount++;
+            }
+
             if (CoinCollect.CoinCount >= 30)
+            {
                 stars[2].sprite = fullStar;
+                startsAmount++;
+            }
         }
     
         public void FixedUpdate()
