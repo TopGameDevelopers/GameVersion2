@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BeginSceneManager : MonoBehaviour
+public class CutSceneManager : MonoBehaviour
 {
     public GameObject[] frames;
 
@@ -19,11 +19,18 @@ public class BeginSceneManager : MonoBehaviour
 
     void GetNextFrame()
     {        
-        if (_counter == frames.Length - 1)
+        if (_counter == frames.Length - 1 && SceneManager.GetActiveScene().buildIndex == 7)
         {
             StartGame();
             return;
         }
+
+        if (_counter == frames.Length - 1 && SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            SceneManager.LoadScene(0);
+            return;
+        }
+        
         frames[_counter].gameObject.SetActive(false);
         _counter++;
         frames[_counter].gameObject.SetActive(true);
