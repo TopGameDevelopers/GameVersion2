@@ -13,7 +13,9 @@ public class PlayerLocation : MonoBehaviour
     {
         for (var i = 0; i < gameFlags.Length; i++)
         {
-            if ((player.transform.position - gameFlags[i].position).magnitude <= 15)
+            var distanceVector = player.transform.position - gameFlags[i].position;
+            var distanceVector2D = new Vector2(distanceVector.x, distanceVector.y);
+            if (distanceVector2D.magnitude <= 5)
             {
                 transform.position = minimapLocation[i].position;
                 break;
