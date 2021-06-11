@@ -232,6 +232,8 @@ namespace Player
             {
                 healingAudioSource.Play();
                 health++;
+                if (health > 5)
+                    health = 5;
                 heartsNumber++;
                 Instantiate(healing, transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
@@ -249,6 +251,11 @@ namespace Player
                 Instantiate(openedChest, other.transform.position, Quaternion.identity);
                 _coinAudioSource.Play();
                 Instantiate(chestsCoins, transform.position, Quaternion.identity);
+            }
+
+            if (other.CompareTag("Train Flag"))
+            {
+                SceneManager.LoadScene(1);
             }
         }
 

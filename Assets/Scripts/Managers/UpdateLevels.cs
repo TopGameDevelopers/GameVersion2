@@ -14,12 +14,15 @@ public class UpdateLevels : MonoBehaviour
     public Image[] earthStars;
     public Image[] moonStars;
 
+    public GameObject emptyImage;
+    
     void Start()
     {
         var playerData = SaveSystem.LoadProgress();
         if (playerData is null)
         {
             moonLevelButton.interactable = false;
+            emptyImage.SetActive(true);
             return;
         }
 
@@ -28,6 +31,7 @@ public class UpdateLevels : MonoBehaviour
         if (progressInfo.Count < 3)
         {
             moonLevelButton.interactable = false;
+            emptyImage.SetActive(true);
         }
 
         var stars = CreateStars();
@@ -43,6 +47,7 @@ public class UpdateLevels : MonoBehaviour
         if (starsAmount < 6)
         {
             moonLevelButton.interactable = false;
+            emptyImage.SetActive(true);
         }
     }
 

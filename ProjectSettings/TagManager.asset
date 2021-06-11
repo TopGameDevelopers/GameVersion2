@@ -15,6 +15,7 @@ TagManager:
   - Gem
   - HealChest
   - Button
+  - Train Flag
   layers:
   - Default
   - TransparentFX
