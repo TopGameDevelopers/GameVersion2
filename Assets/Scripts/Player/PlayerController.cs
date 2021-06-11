@@ -9,8 +9,6 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [FormerlySerializedAs("FirstCam")] public Camera firstCam;
-        [FormerlySerializedAs("BeginCam")] public Camera beginCam;
-
         public float speed;
         public Rigidbody2D rigitbody;
         public Animator anim;
@@ -60,17 +58,6 @@ namespace Player
 
         public void Start()
         {
-            if (beginCam != null)
-            {
-                beginCam.gameObject.SetActive(true);
-                firstCam.gameObject.SetActive(false);
-                _volume = AudioListener.volume;
-                AudioListener.volume = 0f;
-            }
-            else
-            {
-                firstCam.gameObject.SetActive(true);
-            }
             Time.timeScale = 1f;
             anim = GetComponent<Animator>();
             rigitbody = GetComponent<Rigidbody2D>();
@@ -153,7 +140,6 @@ namespace Player
         {
             UpdateHealthSystem();
             MovePlayer();
-            WaitSkip();
             UpdateDamageSystem();
         }
 
@@ -183,13 +169,7 @@ namespace Player
                 hearts[i].enabled = i < heartsNumber;
             }
         }
-
-        private void WaitSkip()
-        {
-            if (Input.anyKey && beginCam.isActiveAndEnabled)
-                StartGame();
-        }
-
+        
         private void MovePlayer()
         {
             var moveInputX = Input.GetAxis("Horizontal");
@@ -207,13 +187,6 @@ namespace Player
             scaler.x *= -1;
             transform.localScale = scaler;
             weapon.transform.localScale = scaler;
-        }
-    
-        public void StartGame()
-        {
-            beginCam.gameObject.SetActive(false);
-            firstCam.gameObject.SetActive(true);
-            AudioListener.volume = _volume;
         }
 
         private void ChangePlayerColor(Color color)

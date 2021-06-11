@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BeginCutScene.unity
     guid: 3d0a685d063dc9b4bb398d23b38a700e
+  - enabled: 1
+    path: Assets/Scenes/Learning.unity
+    guid: 5dee2f6d9ea8c2546920d4eb46ccb135
   m_configObjects: {}
